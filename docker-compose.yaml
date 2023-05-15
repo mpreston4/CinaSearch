@@ -1,4 +1,8 @@
 # volumes:
+volumes:
+  movies-data:
+    external: true
+
 services:
   fastapi:
     build:
@@ -23,3 +27,10 @@ services:
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
       REACT_APP_SAMPLE_SERVICE_API_HOST: ${REACT_APP_SAMPLE_SERVICE_API_HOST}
+  mongo:
+    image: mongo:5
+    volumes:
+      - movies-data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=movies_user
+      - MONGO_INITDB_ROOT_PASSWORD=movies_password
