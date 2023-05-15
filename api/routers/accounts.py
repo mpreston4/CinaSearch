@@ -1,4 +1,3 @@
-# router.py
 from fastapi import (
     Depends,
     HTTPException,
@@ -37,16 +36,16 @@ async def create_account(
     info: AccountIn,
     request: Request,
     response: Response,
-    repo: AccountQueries = Depends(),
+    accounts: AccountQueries = Depends(),
 ):
     hashed_password = authenticator.hash_password(info.password)
     try:
-        account = repo.create(info, hashed_password)
+        account = accounts.create(info, hashed_password)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
     form = AccountForm(username=info.email, password=info.password)
-    token = await authenticator.login(response, request, form, repo)
+    token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())

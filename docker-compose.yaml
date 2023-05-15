@@ -26,6 +26,7 @@ services:
       - MONGO_PASSWORD=movies_password
       - MONGO_HOST=mongo
       - MONGO_DB=movies-db
+      - SIGNING_KEY=jP7AhzKiVc2tSovLyKVqvqqabTiV0EMY9QXZoKO0Qjc
 
   ghi:
     image: node:lts-bullseye
