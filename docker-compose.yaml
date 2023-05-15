@@ -4,6 +4,13 @@ volumes:
     external: true
 
 services:
+  mongo:
+    image: mongo:5
+    volumes:
+      - movies-data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=movies_user
+      - MONGO_INITDB_ROOT_PASSWORD=movies_password
   fastapi:
     build:
       context: api
@@ -12,6 +19,11 @@ services:
       - 8000:8000
     volumes:
       - ./api:/app
+    environment:
+      - MONGO_USER=movies_user
+      - MONGO_PASSWORD=movies_password
+      - MONGO_HOST=mongo
+      - MONGO_DB=movies-db
 
   ghi:
     image: node:lts-bullseye
@@ -27,10 +39,3 @@ services:
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
       REACT_APP_SAMPLE_SERVICE_API_HOST: ${REACT_APP_SAMPLE_SERVICE_API_HOST}
-  mongo:
-    image: mongo:5
-    volumes:
-      - movies-data:/data/db
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=movies_user
-      - MONGO_INITDB_ROOT_PASSWORD=movies_password
