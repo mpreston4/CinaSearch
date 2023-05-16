@@ -21,12 +21,11 @@ services:
     volumes:
       - ./api:/app
     environment:
-      - SIGNING_KEY=jP7AhzKiVc2tSovLyKVqvqqabTiV0EMY9QXZoKO0Qjc
+      - SIGNING_KEY= ${SIGNING_KEY}
       - MONGO_USER=movies_user
       - MONGO_PASSWORD=movies_password
       - MONGO_HOST=mongo
       - MONGO_DB=movies-db
-      - SIGNING_KEY=jP7AhzKiVc2tSovLyKVqvqqabTiV0EMY9QXZoKO0Qjc
 
   ghi:
     image: node:lts-bullseye
