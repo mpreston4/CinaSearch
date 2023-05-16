@@ -32,7 +32,7 @@ class AccountQueries():
     def collection(self):
         return db['accounts']
 
-    def create(self, account_in: AccountIn, hashed_password: str):
+    def create(self, account_in: AccountIn, hashed_password: str) -> AccountOut:
         account = account_in.dict()
         account['hashed_password'] = hashed_password
         result = self.collection.insert_one(account)
@@ -40,7 +40,7 @@ class AccountQueries():
             result = self.get(account["email"])
         return result
 
-    def get(self, email: str):
+    def get(self, email: str) -> AccountOut:
         result = self.collection.find_one({"email": email})
         result["id"] = str(result["_id"])
         return AccountOutWithPassword(**result)
