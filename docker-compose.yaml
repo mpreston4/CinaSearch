@@ -11,6 +11,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=movies_user
       - MONGO_INITDB_ROOT_PASSWORD=movies_password
+
   fastapi:
     build:
       context: api
@@ -20,6 +21,7 @@ services:
     volumes:
       - ./api:/app
     environment:
+      - SIGNING_KEY=jP7AhzKiVc2tSovLyKVqvqqabTiV0EMY9QXZoKO0Qjc
       - MONGO_USER=movies_user
       - MONGO_PASSWORD=movies_password
       - MONGO_HOST=mongo
