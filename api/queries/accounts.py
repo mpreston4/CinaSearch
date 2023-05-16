@@ -1,14 +1,6 @@
 from pydantic import BaseModel
-from pymongo import MongoClient
-import os
-
-MONGO_USER = os.environ.get('MONGO_USER', '')
-MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD', '')
-MONGO_HOST = os.environ.get('MONGO_HOST', '')
-MONGO_DB = os.environ.get('MONGO_DB', '')
-
-client = MongoClient(f'mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_HOST}')
-db = client[MONGO_DB]
+from .client import Queries
+from pymongo.errors import DuplicateKeyError
 
 class DuplicateAccountError(ValueError):
     pass
@@ -26,16 +18,18 @@ class AccountOut(BaseModel):
 class AccountOutWithPassword(AccountOut):
     hashed_password : str
 
-class AccountQueries():
+class AccountQueries(Queries):
 
-    @property
-    def collection(self):
-        return db['accounts']
+    COLLECTION = "accounts"
 
     def create(self, account_in: AccountIn, hashed_password: str) -> AccountOut:
         account = account_in.dict()
         account['hashed_password'] = hashed_password
-        result = self.collection.insert_one(account)
+        account.pop('password')
+        try:
+            result = self.collection.insert_one(account)
+        except DuplicateKeyError:
+            raise DuplicateAccountError
         if result.inserted_id:
             result = self.get(account["email"])
         return result
@@ -44,3 +38,12 @@ class AccountQueries():
         result = self.collection.find_one({"email": email})
         result["id"] = str(result["_id"])
         return AccountOutWithPassword(**result)
+
+    def get_all(self):
+        accounts = []
+        for account in self.collection.find():
+            print(account)
+            account["id"] = str(account["_id"])
+            account = AccountOut(**account)
+            accounts.append(account)
+        return accounts
