@@ -38,12 +38,3 @@ class AccountQueries(Queries):
         result = self.collection.find_one({"email": email})
         result["id"] = str(result["_id"])
         return AccountOutWithPassword(**result)
-
-    def get_all(self):
-        accounts = []
-        for account in self.collection.find():
-            print(account)
-            account["id"] = str(account["_id"])
-            account = AccountOut(**account)
-            accounts.append(account)
-        return accounts
