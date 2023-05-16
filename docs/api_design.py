@@ -1,3 +1,48 @@
+## Get Token
+
+# * Endpoint path: /token
+# * Endpoint method: GET
+
+# * Response: Token for Current User
+# * Response shape (JSON):
+
+# {
+    #   "access_token": "string",
+    #   "token_type": "Bearer",
+    #   "account": {
+    #     "id": "string",
+    #     "email": "string",
+    #     "full_name": "string"
+#      }
+#   }
+
+### Sign Up
+
+# * Endpoint path: /api/accounts
+# * Endpoint method: POST
+
+# * Request shape: json:
+    #   {
+    #       email: string
+    #       password: string
+    #       full_name: string
+    #   }
+
+# * Response: Token information
+# * Response shape (JSON):
+#
+#     ```json
+#     {
+#       "access_token": string
+#       "token_type": string
+#       "account": {
+#           id: string
+#           email: string
+#           full_name: string
+#       }
+#     }
+#     ```
+
 ### Log in
 
 # * Endpoint path: /token
@@ -7,13 +52,11 @@
 #   * username: string
 #   * password: string
 
-# * Response: Account information and a token
+# * Response: Token information
 # * Response shape (JSON):
 #     ```json
 #     {
-#       "account": {
-#         «key»: type»,
-#       },
+#       "access_token": string
 #       "token": string
 #     }
 #     ```
@@ -38,8 +81,15 @@
 # * Endpoint path: /api/movies
 # * Endpoint method: GET
 
+#   headers: {
+#     'X-RapidAPI-Key': enum,
+#     'X-RapidAPI-Host': string,
+#   }
+
 # * Response: A list of movies
 # * Response shape (JSON):
+#   * Authorization: Bearer token
+#
 #     ```json
     # {
     #   "movies": [
@@ -47,7 +97,6 @@
     #       "movie_id": string,
     #       "title": string,
     #       "picture_url": string,
-    #       "rating": string,
     #     }
     #   ]
     # }
@@ -58,12 +107,18 @@
 # * Endpoint path: /api/movies/{movie_id}
 # * Endpoint method: GET
 
-# * Response: A list of movies
+#   headers: {
+#     'X-RapidAPI-Key': enum,
+#     'X-RapidAPI-Host': string,
+#   }
+
+# Parameters
+# params: {info: base_info | isAdult }
+
+# * Response: Details of a movie
 # * Response shape (JSON):
 #     ```json
-    # {
-    #   "movies": [
-    #     {
+    #   {
     #       "movie_id": string,
     #       "title": string,
     #       "plot": string,
@@ -73,19 +128,18 @@
     #       "picute_url": string,
     #       "rating": string
     #     }
-    #   ]
-    # }
+
 #     ```
 
-### Get user movie list
+### Get saved movies
 
-# * Endpoint path: /api/username/movies
+# * Endpoint path: /api/watchlist
 # * Endpoint method: GET
 
 # * Headers:
 #   * Authorization: Bearer token
 
-# * Response: A list of movies saved by user
+# * Response: A list of favorited movies by user
 # * Response shape (JSON):
 #     ```json
     # {
@@ -95,7 +149,8 @@
     #       "title": string,
     #       "picute_url": string,
     #       "rating": string,
-    #       "has_watched": boolean
+    #       "has_watched": boolean,
+    #       "account_username": string
     #     }
     #   ]
     # }
@@ -103,7 +158,7 @@
 
 ### Add to user movie list
 
-# * Endpoint path: /api/username/movies
+# * Endpoint path: /api/watchlist
 # * Endpoint method: POST
 
 # * Headers:
@@ -111,15 +166,15 @@
 
 #  * Request shape (JSON):
     # {
-    #   * "movie_id": string
+    #   "account_username": string,
+    #    "movie_id": string
     # }
 
 # * Response: Details of the saved movie
 # * Response shape (JSON):
 #     ```json
-    # {
-    #   "movies": [
     #     {
+    #       "account_username": string
     #       "movie_id": string,
     #       "title": string,
     #       "plot": string,
@@ -130,13 +185,11 @@
     #       "rating": string
     #       "has_watched": false
     #     }
-    #   ]
-    # }
 #     ```
 
 ### Update has_watched field
 
-# * Endpoint path: /api/username/movies/{movie_id}
+# * Endpoint path: /api/watchlist/{movie_id}
 # * Endpoint method: PUT
 
 # * Headers:
@@ -146,9 +199,9 @@
 # * Response: Details of the updated movie
 # * Response shape (JSON):
 #     ```json
-    # {
-    #   "movies": [
-    #     {
+
+    #   {
+    #       "account_username": string
     #       "movie_id": string,
     #       "title": string,
     #       "plot": string,
@@ -159,13 +212,12 @@
     #       "rating": string
     #       "has_watched": false
     #     }
-    #   ]
-    # }
+    #
 #     ```
 
 ### Delete movie from user movie list
 
-# * Endpoint path: /api/username/movies/{movie_id}
+# * Endpoint path: /api/watchlist/{movie_id}
 # * Endpoint method: DELETE
 
 # * Headers:

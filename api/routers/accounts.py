@@ -28,8 +28,7 @@ class AccountToken(Token):
 class HttpError(BaseModel):
     detail: str
 
-class AccountList(BaseModel):
-    accounts: list[AccountOut]
+
 
 router = APIRouter()
 
@@ -52,11 +51,6 @@ async def create_account(
     form = AccountForm(username=info.email, password=info.password)
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
-
-@router.get("/api/accounts", response_model=AccountList)
-def list_accounts(repo: AccountQueries = Depends(), account_data: dict = Depends(authenticator.get_current_account_data),):
-    accounts = repo.get_all()
-    return AccountList(accounts=accounts)
 
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(

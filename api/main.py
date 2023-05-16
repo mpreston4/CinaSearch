@@ -6,8 +6,8 @@ import os
 
 
 app = FastAPI()
-app.include_router(authenticator.router)
-app.include_router(accounts.router)
+app.include_router(authenticator.router, tags=["Login/Logout"])
+app.include_router(accounts.router, tags=["Accounts"])
 
 app.add_middleware(
     CORSMiddleware,
