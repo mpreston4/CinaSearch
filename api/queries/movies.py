@@ -26,15 +26,19 @@ class MovieList(BaseModel):
     movies: List[MovieIn]
 
 class MovieQuery(Queries):
-    def get_all(self):
+    def get_all(self, startYear: str, titleType: str, endYear: str, genre: str, page: str):
         url = "https://moviesdatabase.p.rapidapi.com/titles"
 
         querystring = {
-            "startYear":"1980",
-            "titleType":"movie",
-            "info":"base_info",
-            "endYear":"2023"
-            }
+            "startYear": startYear,
+            "titleType": titleType,
+            "info": "base_info",
+            "endYear": endYear,
+            "page": page
+        }
+
+        if genre != "":
+            querystring["genre"] = genre
 
         headers = {
 	        "X-RapidAPI-Key": MOVIES_DATABASE_API_KEY,
@@ -45,27 +49,15 @@ class MovieQuery(Queries):
 
         data = response.json()
         movie_list = []
-        while len(movie_list) < 200:
-            movies = data["results"]
-            for movie in movies:
-                if movie["primaryImage"] is None:
-                    continue
-                d = {}
-                d["movie_id"] = movie["id"]
-                d["title"] = movie["titleText"]["text"]
-                d["picture_url"] = movie["primaryImage"]["url"]
-                movie_list.append(MovieIn(**d))
-            next_page = data["next"]
-
-            url = f"https://moviesdatabase.p.rapidapi.com{next_page}"
-
-            headers = {
-                "X-RapidAPI-Key": MOVIES_DATABASE_API_KEY,
-                "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com"
-            }
-
-            response = requests.get(url, headers=headers)
-            data = response.json()
+        movies = data["results"]
+        for movie in movies:
+            if movie["primaryImage"] is None:
+                continue
+            d = {}
+            d["movie_id"] = movie["id"]
+            d["title"] = movie["titleText"]["text"]
+            d["picture_url"] = movie["primaryImage"]["url"]
+            movie_list.append(MovieIn(**d))
         return movie_list
 
     def get_one(self, movie_id:str):
@@ -106,3 +98,28 @@ class MovieQuery(Queries):
         d["is_adult"] = movie["isAdult"]
 
         return MovieOut(**d)
+
+    def get_all_by_title(self, title: str, page: str):
+        url = f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"
+
+        querystring = {"exact":"false","titleType":"movie","page": page}
+
+        headers = {
+            "X-RapidAPI-Key": MOVIES_DATABASE_API_KEY,
+            "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com"
+        }
+
+        response = requests.get(url, headers=headers, params=querystring)
+
+        data = response.json()
+        movie_list = []
+        movies = data["results"]
+        for movie in movies:
+            if movie["primaryImage"] is None:
+                continue
+            d = {}
+            d["movie_id"] = movie["id"]
+            d["title"] = movie["titleText"]["text"]
+            d["picture_url"] = movie["primaryImage"]["url"]
+            movie_list.append(MovieIn(**d))
+        return movie_list
