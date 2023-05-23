@@ -3,11 +3,38 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ErrorNotification from './ErrorNotification';
+import HomePage from './Home'
+import MoviesList from './MoviesList';
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { store } from './app/store';
+import { Provider } from 'react-redux'
+
+const router = createBrowserRouter([
+  {
+    element: <App />,
+    errorElement: <ErrorNotification />,
+    children: [
+      {
+        path: '/',
+        element: <HomePage />
+      },
+      {
+        path: '/movies',
+        element: <MoviesList />
+      }
+    ]
+
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

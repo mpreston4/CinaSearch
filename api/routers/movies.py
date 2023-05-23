@@ -4,7 +4,6 @@ from fastapi import (
     APIRouter,
 )
 from queries.movies import (
-    MovieIn,
     MovieOut,
     MovieList,
     MovieQuery,
