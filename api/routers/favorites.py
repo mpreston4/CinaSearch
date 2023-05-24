@@ -26,14 +26,14 @@ def create_favorite(
     return favorite
 
 @router.get("/api/favorites", response_model=FavoriteList)
-def get_all_favorite(
+def get_all_favorites(
     account_data: dict = Depends(authenticator.get_current_account_data),
     queries: FavoritesQueries = Depends(),
 ):
     return {"favorites": queries.get(account_email=account_data["email"])}
 
 @router.put("/api/favorites/{movie_id}", response_model=FavoriteOut)
-def update_favorites(
+def update_favorite(
     movie_id: str,
     account_data: dict = Depends(authenticator.get_current_account_data),
     queries: FavoritesQueries = Depends(),
@@ -41,7 +41,7 @@ def update_favorites(
     return queries.update(movie_id, account_email=account_data["email"])
 
 @router.delete("/api/favorites/{movie_id}", response_model=bool)
-def delete_favorites(
+def delete_favorite(
     movie_id: str,
     account_data: dict = Depends(authenticator.get_current_account_data),
     queries: FavoritesQueries = Depends(),
