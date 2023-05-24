@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './Components/App';
 import reportWebVitals from './reportWebVitals';
-import ErrorNotification from './ErrorNotification';
-import HomePage from './Home'
-import MoviesList from './MoviesList';
+import ErrorNotification from './Components/ErrorNotification';
+import HomePage from './Components/Home'
+import MoviesList from './Components/MoviesList';
+import Login from './Components/LoginForm';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { store } from './app/store';
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/movies',
         element: <MoviesList />
+      },
+      {
+        path: '/login',
+        element: <Login />
       }
     ]
 

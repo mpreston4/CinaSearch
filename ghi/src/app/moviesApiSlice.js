@@ -25,8 +25,20 @@ export const movieApi = createApi({
                 credentials: 'include',
             }),
             invalidatesTags: ['Account'],
+        }),
+        login: builder.mutation({
+            query: ({username, password}) => {
+                const body = new FormData()
+                body.append('username', username);
+                body.append('password', password);
+                return {
+                    url: '/token',
+                    method: 'POST',
+                    body
+                }
+            }
         })
     })
 })
 
-export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation } = movieApi
+export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation, useLoginMutation } = movieApi

@@ -1,4 +1,4 @@
-import { useGetAllMoviesQuery } from "./app/moviesApiSlice";
+import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 
 const MoviesList = () => {
     const { data, isLoading } = useGetAllMoviesQuery();

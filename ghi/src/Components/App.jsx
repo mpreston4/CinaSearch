@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import Construct from "./Construct.js";
-import ErrorNotification from "./ErrorNotification";
+import Construct from "../Construct.js";
+import ErrorNotification from "./ErrorNotification.jsx";
 import "./App.css";
 import MoviesList from "./MoviesList.jsx";
 import Nav from "./Nav.jsx";
+import Login from "./LoginForm.jsx";
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
@@ -34,7 +35,7 @@ function App() {
       <ErrorNotification error={error} />
       {/* <Construct info={launchInfo} /> */}
       <MoviesList />
-
+      <Login />
     </div>
   );
 }

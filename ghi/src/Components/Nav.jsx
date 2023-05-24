@@ -1,5 +1,5 @@
 import { Link, NavLink, redirect } from 'react-router-dom';
-import { useGetAccountQuery, useLogoutMutation } from './app/moviesApiSlice';
+import { useGetAccountQuery, useLogoutMutation } from '../app/moviesApiSlice';
 
 function Nav() {
     const { data: account } = useGetAccountQuery()
