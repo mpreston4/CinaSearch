@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from authenticator import authenticator
-from routers import accounts, movies, favorites
+from routers import accounts, movies, favorites, genres
 import os
 
 
@@ -10,6 +10,7 @@ app.include_router(authenticator.router, tags=["Login/Logout"])
 app.include_router(accounts.router, tags=["Accounts"])
 app.include_router(movies.router, tags=["Movies"])
 app.include_router(favorites.router, tags=["Favorites"])
+app.include_router(genres.router, tags=["Genres"])
 
 app.add_middleware(
     CORSMiddleware,
