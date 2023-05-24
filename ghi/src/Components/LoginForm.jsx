@@ -14,7 +14,7 @@ const Login = () => {
         login({username, password})
     }
     if (result.isSuccess) {
-        navigate("/movies")
+        navigate("/")
     } else if (result.isError) {
         setError(result.error)
     }

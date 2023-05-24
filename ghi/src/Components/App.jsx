@@ -5,10 +5,14 @@ import "./App.css";
 import MoviesList from "./MoviesList.jsx";
 import Nav from "./Nav.jsx";
 import Login from "./LoginForm.jsx";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from "./Home.jsx";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
   const [error, setError] = useState(null);
+
 
   // useEffect(() => {
   //   async function getData() {
@@ -30,14 +34,19 @@ function App() {
   // }, []);
 
   return (
-    <div>
-      <Nav />
-      <ErrorNotification error={error} />
-      {/* <Construct info={launchInfo} /> */}
-      <MoviesList />
-      <Login />
-    </div>
-  );
+  // <BrowserRouter>
+  // <Nav />
+  //   <Routes>
+  //     <Route path="/" element={<HomePage />} />
+  //     <Route path="movies" element={<MoviesList />} />
+  //     <Route path="login" element={<Login />} />
+  //   </Routes>
+  // </BrowserRouter>
+    <>
+    <Nav />
+    <Outlet />
+    </>
+    );
 }
 
 export default App;

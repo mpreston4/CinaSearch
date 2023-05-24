@@ -1,5 +1,6 @@
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 
+
 const MoviesList = () => {
     const { data, isLoading } = useGetAllMoviesQuery();
     if (isLoading)
@@ -9,18 +10,20 @@ const MoviesList = () => {
     <>
         <div className="row mt-3">
             <h1 className='mb-3'>Movies</h1>
-            {data.movies.map( movie  => {
-                return (
-                    <tr key={movie.id}>
-                        <td>{movie.title}</td>
-                    </tr>
-                )
-            })}
+            <table>
+                <tbody>
+                    {data.movies.map( movie  => {
+                        return (
+                            <tr key={movie.movie_id}>
+                                <td>{movie.title}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
         </div>
-
     </>
     )
-
 }
 
 export default MoviesList

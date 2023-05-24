@@ -34,9 +34,11 @@ export const movieApi = createApi({
                 return {
                     url: '/token',
                     method: 'POST',
-                    body
+                    body,
+                    credentials: 'include',
                 }
-            }
+            },
+            invalidatesTags: ['Account']
         })
     })
 })
