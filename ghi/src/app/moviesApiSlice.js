@@ -7,7 +7,10 @@ export const movieApi = createApi({
     }),
     endpoints: (builder) => ({
         getAllMovies: builder.query({
-            query: () => "/api/movies",
+            query: (params) => ({
+                url: "/api/movies",
+                params,
+            }),
             providesTags: [{type: 'Movie', id: 'LIST'}]
         }),
         getAccount: builder.query({
