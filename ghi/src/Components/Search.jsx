@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useGetAllGenresQuery } from "../app/moviesApiSlice";
 
 const Search = () => {
-    const { data } = useGetAllGenresQuery();
+    const { data, isLoading } = useGetAllGenresQuery();
     const [title, setTitle] = useState('');
     const [genre, setGenre] = useState('');
 
@@ -15,8 +15,9 @@ const Search = () => {
     const handleGenreClick = () => {
         navigate('/movies', {state: {genre: genre}});
     };
-
-
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
 
     return (
         <>
