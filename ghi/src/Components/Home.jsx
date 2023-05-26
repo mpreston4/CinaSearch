@@ -1,5 +1,6 @@
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import MovieSlide from "./MovieSlide";
+import Search from "./Search";
 
 const HomePage = () => {
     const { data, isLoading } = useGetAllMoviesQuery();
@@ -21,6 +22,8 @@ const HomePage = () => {
     }
 
     return(
+    <>
+    <Search />
         <div id="carouselExampleIndicators" className="carousel slide" data-bs-theme="dark">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -47,6 +50,7 @@ const HomePage = () => {
                 <span style={{color: "black"}}>Next</span>
             </button>
         </div>
+    </>
     );
 }
 

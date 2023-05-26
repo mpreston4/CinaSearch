@@ -1,7 +1,11 @@
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
+import { useLocation } from "react-router-dom";
 
 const MoviesList = () => {
-    const { data, isLoading } = useGetAllMoviesQuery();
+    const location = useLocation();
+    let param = location.state
+    console.log(param)
+    const { data, isLoading } = useGetAllMoviesQuery(param);
 
     if (isLoading) {
         return <p>Loading...</p>
