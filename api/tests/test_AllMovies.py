@@ -19,3 +19,4 @@ def test_get_all_movies():
     # Assert
     assert response.status_code == 200
     assert data == {"movies": []}
+
