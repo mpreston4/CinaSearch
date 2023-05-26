@@ -17,7 +17,7 @@ def get_all_movies(
     repo: MovieQuery = Depends(),
     startYear: str = "1980",
     titleType: str = "movie",
-    endYear: str = "2023",
+    endYear: str = "2022",
     genre: str = "",
     page: str = "1",
     title: str = "",
@@ -34,7 +34,7 @@ def get_all_movies(
 @router.get('/api/movies/{movie_id}', response_model=MovieOut)
 def get_movie_details(
     movie_id: str,
-    repo: MovieQuery = Depends()
+    repo: MovieQuery = Depends(),
 ):
     try:
         result = repo.get_one(movie_id)

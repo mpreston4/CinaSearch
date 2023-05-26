@@ -34,11 +34,13 @@ class MovieQuery(Queries):
             "titleType": titleType,
             "info": "base_info",
             "endYear": endYear,
-            "page": page
+            "page": page,
+            "list": "most_pop_movies"
         }
 
         if genre != "":
             querystring["genre"] = genre
+            del querystring["list"]
 
         headers = {
 	        "X-RapidAPI-Key": MOVIES_DATABASE_API_KEY,
@@ -47,18 +49,30 @@ class MovieQuery(Queries):
 
         response = requests.get(url, headers=headers, params=querystring)
 
-        data = response.json()
         movie_list = []
-        movies = data["results"]
-        for movie in movies:
-            if movie["primaryImage"] is None:
-                continue
-            d = {}
-            d["movie_id"] = movie["id"]
-            d["title"] = movie["titleText"]["text"]
-            d["picture_url"] = movie["primaryImage"]["url"]
-            movie_list.append(MovieIn(**d))
-        return movie_list
+        count = 0
+        while True:
+            data = response.json()
+            movies = data["results"]
+            for movie in movies:
+                if movie["primaryImage"]:
+                    url = f"https://moviesdatabase.p.rapidapi.com/titles/{movie['id']}"
+                    querystring = {"info": "spokenLanguages"}
+                    result = (requests.get(url, headers=headers, params=querystring)).json()
+                    if result["results"]["spokenLanguages"]:
+                        languages = result["results"]["spokenLanguages"]["spokenLanguages"]
+                        for language in languages:
+                            if language["id"] == "en":
+                                d = {}
+                                d["movie_id"] = movie["id"]
+                                d["title"] = movie["titleText"]["text"]
+                                d["picture_url"] = movie["primaryImage"]["url"]
+                                movie_list.append(MovieIn(**d))
+                                count += 1
+                                if count == 10:
+                                    return movie_list
+                url = f"https://moviesdatabase.p.rapidapi.com{data['next']}"
+                response = requests.get(url, headers=headers)
 
     def get_one(self, movie_id:str):
         url = f"https://moviesdatabase.p.rapidapi.com/titles/{movie_id}"
