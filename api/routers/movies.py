@@ -17,7 +17,7 @@ def get_all_movies(
     repo: MovieQuery = Depends(),
     startYear: str = "1980",
     titleType: str = "movie",
-    endYear: str = "2023",
+    endYear: str = "2022",
     genre: str = "",
     page: str = "1",
     title: str = "",

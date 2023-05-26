@@ -1,5 +1,4 @@
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
-import MoviesCard from "./MovieSlideActive";
 
 const MoviesList = () => {
     const { data, isLoading } = useGetAllMoviesQuery();

@@ -17,6 +17,7 @@ const Login = () => {
         navigate("/")
     } else if (result.isError) {
         setError(result.error)
+        console.error(error)
     }
     return (
         <div className="row">
