@@ -1,5 +1,4 @@
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
-import MovieSlideActive from "./MovieSlideActive";
 import MovieSlide from "./MovieSlide";
 
 const HomePage = () => {
@@ -22,7 +21,7 @@ const HomePage = () => {
     }
 
     return(
-        <div id="carouselExampleIndicators" className="carousel slide">
+        <div id="carouselExampleIndicators" className="carousel slide" data-bs-theme="dark">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -30,12 +29,12 @@ const HomePage = () => {
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
             </div>
-            <div className="carousel-inner">
+            <div className="carousel-inner pb-5">
                 {slides.map((movies, index) => {
                     if (index === 0) {
-                        return(<MovieSlideActive key={movies[0].movie_id} movies={movies} />);
+                        return(<MovieSlide key={movies[0].movie_id} movies={movies} class="carousel-item active" />);
                     } else {
-                        return(<MovieSlide key={movies[0].movie_id} movies={movies} />);
+                        return(<MovieSlide key={movies[0].movie_id} movies={movies} class="carousel-item" />);
                     }
                 })}
             </div>
