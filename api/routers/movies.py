@@ -41,5 +41,3 @@ def get_movie_details(
     except InvalidID:
         raise HTTPException(status_code=404, details="Movie not found")
     return result
-
-# @router.get('/api/', response_model=)
