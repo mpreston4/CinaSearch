@@ -42,8 +42,14 @@ export const movieApi = createApi({
                 }
             },
             invalidatesTags: ['Account']
-        })
+        }),
+        getAllGenres: builder.query({
+            query: () => ({
+                url: "/api/genres",
+            }),
+            providesTags: [{type: 'Genres', id: 'LIST'}]
+        }),
     })
 })
 
-export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation, useLoginMutation } = movieApi
+export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation, useLoginMutation, useGetAllGenresQuery } = movieApi
