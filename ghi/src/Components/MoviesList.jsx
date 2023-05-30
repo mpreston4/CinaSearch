@@ -1,3 +1,4 @@
+import MovieCard from "./MovieCard";
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import { useLocation } from "react-router-dom";
 
@@ -6,29 +7,35 @@ const MoviesList = () => {
     let param = location.state
     console.log(param)
     const { data, isLoading } = useGetAllMoviesQuery(param);
-
     if (isLoading) {
         return <p>Loading...</p>
     }
-
+    const columns = [[], [], []]
+    let i = 0;
+    for (let movie of data.movies) {
+        columns[i].push(movie)
+        i += 1;
+        if (i === 3) {
+            i = 0;
+        }
+    }
     return (
     <>
         <div className="row mt-3">
             <h1 className='mb-3'>Movies</h1>
-            <table>
-                <tbody>
-                    {data.movies.map( movie  => {
-                        return (
-                            <tr key={movie.movie_id}>
-                                <td>{movie.title}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
+            {columns.map( column => {
+                return (
+                <div className="col-3">
+                {column.map( movie  => {
+                    return (
+                        <MovieCard key={movie.movie_id} movie={movie} />
+                    )
+                })}
+                </div>
+                )
+            })}
         </div>
     </>
     )
 }
-
 export default MoviesList
