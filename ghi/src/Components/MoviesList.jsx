@@ -20,8 +20,7 @@ const MoviesList = () => {
         }
     }
     return (
-    <>
-        <div className="row mt-3">
+        <div className="d-flex justify-content-center row mt-3">
             <h1 className='mb-3'>Movies</h1>
             {columns.map( column => {
                 return (
@@ -35,7 +34,6 @@ const MoviesList = () => {
                 )
             })}
         </div>
-    </>
     )
 }
 export default MoviesList
