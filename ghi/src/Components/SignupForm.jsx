@@ -22,7 +22,7 @@ const Signup = () => {
     }
 
     if (result.isSuccess) {
-        navigate("login");
+        navigate("/");
     } else if (result.isError) {
         setError(result.error);
         console.error(error);
@@ -68,7 +68,7 @@ const Signup = () => {
                         <input
                             type="password"
                             className="form-control"
-                            id="Signup_password"
+                            id="Signup_confirm_password"
                             value={confirm_password}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
