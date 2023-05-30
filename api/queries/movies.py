@@ -17,7 +17,7 @@ class MovieIn(BaseModel):
 
 class MovieOut(MovieIn):
     plot: str
-    rating: str
+    rating: str | None
     runtime: str
     is_adult: bool
     release_year: str
