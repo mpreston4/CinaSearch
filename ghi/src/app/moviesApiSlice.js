@@ -69,4 +69,12 @@ export const movieApi = createApi({
     })
 })
 
-export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation, useLoginMutation, useSignupMutation, useGetAllGenresQuery } = movieApi
+export const {
+    useGetAllMoviesQuery,
+    useGetAccountQuery,
+    useLogoutMutation,
+    useLoginMutation,
+    useSignupMutation,
+    useGetAllGenresQuery,
+    useGetMovieQuery
+} = movieApi
