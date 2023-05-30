@@ -11,7 +11,7 @@ export const movieApi = createApi({
                 url: "/api/movies",
                 params,
             }),
-            providesTags: [{type: 'Movie', id: 'LIST'}]
+            providesTags: [{type: 'Movies', id: 'LIST'}]
         }),
         getAccount: builder.query({
             query: () => ({
@@ -60,6 +60,12 @@ export const movieApi = createApi({
             }),
             providesTags: [{type: 'Genres', id: 'LIST'}]
         }),
+        getMovie: builder.query({
+            query: (movie_id) => ({
+                url: `api/movies/${movie_id}`,
+            }),
+            providesTags: ["Movie"]
+        })
     })
 })
 

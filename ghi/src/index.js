@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import ErrorNotification from './Components/ErrorNotification';
 import HomePage from './Components/Home'
 import MoviesList from './Components/MoviesList';
+import MovieDetail from './Components/MovieDetails';
 import Login from './Components/LoginForm';
 import Signup from './Components/SignupForm';
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'movies',
-        element: <MoviesList />
+        element: <MoviesList />,
       },
       {
         path: 'login',
