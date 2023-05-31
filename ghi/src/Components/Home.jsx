@@ -1,6 +1,7 @@
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import MovieSlide from "./MovieSlide";
 import Search from "./Search";
+import MovieDetail from "./MovieDetails";
 
 const HomePage = () => {
     const { data, isLoading } = useGetAllMoviesQuery();
