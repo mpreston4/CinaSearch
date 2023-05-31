@@ -1,6 +1,7 @@
 import MovieCard from "./MovieCard";
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import { useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const MoviesList = () => {
     const location = useLocation();
@@ -40,3 +41,22 @@ const MoviesList = () => {
     )
 }
 export default MoviesList
+
+// const Movies = () => {
+//     return (
+//         <div className="d-flex justify-content-center row mt-3">
+//             <h1 className='mb-3'>Movies</h1>
+//             {columns.map( column => {
+//                 return (
+//                 <div className="col-3">
+//                 {column.map( movie  => {
+//                     return (
+//                         <MovieCard key={movie.movie_id} movie={movie} />
+//                     )
+//                 })}
+//                 </div>
+//                 )
+//             })}
+//         </div>
+//     )
+// }

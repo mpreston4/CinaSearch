@@ -68,7 +68,7 @@ const Signup = () => {
                         <input
                             type="password"
                             className="form-control"
-                            id="Signup_password"
+                            id="Signup_confirm_password"
                             value={confirm_password}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         />
