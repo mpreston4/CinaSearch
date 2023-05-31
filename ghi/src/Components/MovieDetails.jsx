@@ -1,34 +1,35 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useGetMovieQuery } from "../app/moviesApiSlice"
 
 const MovieDetail = () => {
-    const movie = useParams()
-    const { data, isLoading } = useGetMovieQuery(movie["movie_id"])
-    console.log(data)
-    if (isLoading) {
-        return <p>Loading...</p>
-    }
-    return (
-        <div className="d-flex justify-content-center">
-            <div className="card mb-3" style={{width: 540}}>
-                <div className="row g-0">
-                    <div className="col-md-4">
-                    <img src={data.picture_url} className="img-fluid rounded-start" alt="..."/>
-                    </div>
-                    <div className="col-md-8">
-                    <div className="card-body">
-                        <h5 className="card-title">{data.title}</h5>
-                        <p className="card-text">{data.plot}</p>
-                        <p className="card-text text-body-secondary">{data.is_adult ? "Not Family-Friendly": "Family-Friendly"}</p>
-                        <p className="card-text text-body-secondary">Length: {data.runtime} minutes</p>
-                        <p className="card-text text-body-secondary">Released {data.release_year}</p>
-                        <p className="card-text"><small className="text-body-secondary">Rating: {data.rating ? data.rating: "Not Rated"}</small></p>
 
-                    </div>
-                    </div>
+    const navigate = useNavigate()
+    const movie = useParams()
+
+    const handleClick = () => {
+        navigate("/movies")
+    }
+
+    return (
+        <>
+            <div className="modal fade show d-block" id={movie.movie_id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button onClick={handleClick} type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body">
+                    ...
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-primary">Save changes</button>
+                </div>
                 </div>
             </div>
-        </div>
+            </div>
+        </>
     )
 }
 

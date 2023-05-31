@@ -23,17 +23,19 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: 'movies',
+        path: 'movies/',
         element: <MoviesList />,
+        children: [
+          {
+            path: ':movie_id',
+            element: <MovieDetail />
+          }
+        ]
       },
       {
-        path: 'login',
+        path: 'login/',
         element: <Login />
       },
-      {
-        path: 'movies/:movie_id',
-        element: <MovieDetail />
-      }
     ],
   },
 ])
