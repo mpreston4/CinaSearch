@@ -65,6 +65,39 @@ export const movieApi = createApi({
                 url: `api/movies/${movie_id}`,
             }),
             providesTags: ["Movie"]
+        }),
+        getFavorites: builder.query({
+            query: () => ({
+                url: `/api/favorites`,
+                credentials: 'include'
+            }),
+            providesTags: ['Favorites'],
+            transformResponse: (response) => response?.favorites
+        }),
+        deleteFavorite: builder.mutation({
+            query: (id) => ({
+                url: `/api/favorites/${id}`,
+                method: 'DELETE',
+                credentials: 'include'
+            }),
+            invalidatesTags: ['Favorites']
+        }),
+        createFavorite: builder.mutation({
+            query: (body) => ({
+                url: `/api/favorites`,
+                method: 'POST',
+                body,
+                credentials: 'include'
+            }),
+            invalidatesTags: ['Favorites']
+        }),
+        updateFavorite: builder.mutation({
+            query: (id) => ({
+                url: `/api/favorites/${id}`,
+                method: "PUT",
+                credentials: 'include'
+            }),
+            invalidatesTags: ['Watched']
         })
     })
 })
@@ -76,5 +109,9 @@ export const {
     useLoginMutation,
     useSignupMutation,
     useGetAllGenresQuery,
-    useGetMovieQuery
+    useGetMovieQuery,
+    useGetFavoritesQuery,
+    useDeleteFavoriteMutation,
+    useCreateFavoriteMutation,
+    useUpdateFavoriteMutation
  } = movieApi

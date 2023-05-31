@@ -1,7 +1,7 @@
 import MovieCard from "./MovieCard";
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import { useLocation } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
 
 const MoviesList = () => {
     const location = useLocation();
