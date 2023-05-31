@@ -27,4 +27,6 @@ class GenreQuery(Queries):
        genre_list.remove("News")
        genre_list.remove("Reality-TV")
        genre_list.remove("Talk-Show")
+       genre_list.remove("Adult")
+       genre_list.remove("Film-Noir")
        return genre_list
