@@ -43,6 +43,17 @@ export const movieApi = createApi({
             },
             invalidatesTags: ['Account']
         }),
+        signup: builder.mutation({
+            query: (body) => {
+                return {
+                    url: '/api/accounts',
+                    method: 'POST',
+                    body,
+                    credentials: 'include',
+                }
+            },
+            invalidatesTags: ['Account']
+        }),
         getAllGenres: builder.query({
             query: () => ({
                 url: "/api/genres",
@@ -58,4 +69,4 @@ export const movieApi = createApi({
     })
 })
 
-export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation, useLoginMutation, useGetAllGenresQuery, useGetMovieQuery } = movieApi
+export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation, useLoginMutation, useSignupMutation, useGetAllGenresQuery } = movieApi
