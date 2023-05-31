@@ -34,7 +34,8 @@ class MovieQuery(Queries):
             "titleType": titleType,
             "info": "base_info",
             "endYear": endYear,
-            "page": page
+            "page": page,
+            "list": "top_boxoffice_200",
         }
 
         if genre != "":

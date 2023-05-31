@@ -1,7 +1,4 @@
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import MovieDetail from './MovieDetails';
-import { useGetMovieQuery } from '../app/moviesApiSlice';
 
 function MovieCard(props) {
     let movie = props.movie
