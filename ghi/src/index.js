@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import ErrorNotification from './Components/ErrorNotification';
 import HomePage from './Components/Home'
 import MoviesList from './Components/MoviesList';
-import MovieDetail from './Components/MovieDetails';
 import Login from './Components/LoginForm';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -25,12 +24,6 @@ const router = createBrowserRouter([
       {
         path: 'movies/',
         element: <MoviesList />,
-        children: [
-          {
-            path: ':movie_id',
-            element: <MovieDetail />
-          }
-        ]
       },
       {
         path: 'login/',

@@ -49,16 +49,23 @@ class MovieQuery(Queries):
 
         data = response.json()
         movie_list = []
-        movies = data["results"]
-        for movie in movies:
-            if movie["primaryImage"] is None:
-                continue
-            d = {}
-            d["movie_id"] = movie["id"]
-            d["title"] = movie["titleText"]["text"]
-            d["picture_url"] = movie["primaryImage"]["url"]
-            movie_list.append(MovieIn(**d))
-        return movie_list
+        count = 0
+        while True:
+            movies = data["results"]
+            for movie in movies:
+                if movie["primaryImage"] is None or movie["runtime"] is None or movie["plot"] is None:
+                    continue
+                d = {}
+                d["movie_id"] = movie["id"]
+                d["title"] = movie["titleText"]["text"]
+                d["picture_url"] = movie["primaryImage"]["url"]
+                movie_list.append(MovieIn(**d))
+                count += 1
+                if count == 10:
+                    return movie_list
+            querystring["page"] = str(int(querystring["page"]) + 1)
+            response = requests.get(url, headers=headers, params=querystring)
+            data = response.json()
 
     def get_one(self, movie_id:str):
         url = f"https://moviesdatabase.p.rapidapi.com/titles/{movie_id}"
