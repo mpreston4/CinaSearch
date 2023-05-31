@@ -1,7 +1,7 @@
 import FavoriteButton from './FavoriteButton';
 import { useGetAccountQuery } from '../app/moviesApiSlice';
 import MovieDetail from './MovieDetails';
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 function MovieCard(props) {
     let movie = props.movie
