@@ -22,7 +22,7 @@ const Signup = () => {
     }
 
     if (result.isSuccess) {
-        navigate("login");
+        navigate("/");
     } else if (result.isError) {
         setError(result.error);
         console.error(error);
