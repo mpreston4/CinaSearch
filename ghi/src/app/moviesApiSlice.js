@@ -41,7 +41,7 @@ export const movieApi = createApi({
                     credentials: 'include',
                 }
             },
-            invalidatesTags: ['Account']
+            invalidatesTags: ['Account', 'Favorites']
         }),
         signup: builder.mutation({
             query: (body) => {
@@ -52,7 +52,7 @@ export const movieApi = createApi({
                     credentials: 'include',
                 }
             },
-            invalidatesTags: ['Account']
+            invalidatesTags: ['Account', 'Favorites']
         }),
         getAllGenres: builder.query({
             query: () => ({
@@ -72,7 +72,7 @@ export const movieApi = createApi({
                 credentials: 'include'
             }),
             providesTags: ['Favorites'],
-            transformResponse: (response) => response?.favorites
+            // transformResponse: (response) => response?.favorites
         }),
         deleteFavorite: builder.mutation({
             query: (id) => ({
@@ -97,7 +97,7 @@ export const movieApi = createApi({
                 method: "PUT",
                 credentials: 'include'
             }),
-            invalidatesTags: ['Watched']
+            invalidatesTags: ['Favorites']
         })
     })
 })

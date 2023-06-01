@@ -9,10 +9,9 @@ const Favorites = () => {
             <div>Loading...</div>
         )
     }
-    console.log(data)
     const columns = [[], [], []]
     let i = 0;
-    for (let movie of data) {
+    for (let movie of data.favorites) {
         columns[i].push(movie)
         i += 1;
         if (i === 3) {
@@ -22,18 +21,32 @@ const Favorites = () => {
     return (
         <div className="d-flex justify-content-center row mt-3">
             <h1 className="mb-3 text-center">Your List of Favorites!</h1>
-                    {columns.map( column => {
+                {columns.map( column => {
                     return (
-                    <div key={column[0].movie_id} className="col-3">
-                    {column.map( movie  => {
-                        return (
-                            <MovieCardForFavorites key={movie.movie_id} movie={movie} />
-                        )
-                    })}
-                    </div>
+                        <div key={columns.indexOf(column)} className="col-3">
+                        {column.map( movie => {
+                            return (
+                                <MovieCardForFavorites key={movie.movie_id} movie={movie}/>
+                            )
+                        })}
+                        </div>
                     )
                 })}
         </div>
+        // <div className="d-flex justify-content-center row mt-3">
+        //     <h1 className="mb-3 text-center">Your List of Favorites!</h1>
+        //             {columns.map( column => {
+        //             return (
+        //             <div key={column[0].movie_id} className="col-3">
+        //             {column.map( movie  => {
+        //                 return (
+        //                     <MovieCardForFavorites key={movie.movie_id} movie={movie} />
+        //                 )
+        //             })}
+        //             </div>
+        //             )
+        //         })}
+        // </div>
     )
 }
 

@@ -1,12 +1,17 @@
-import { useGetFavoritesQuery, useDeleteFavoriteMutation, useCreateFavoriteMutation } from "../app/moviesApiSlice";
+import { useGetFavoritesQuery, useDeleteFavoriteMutation, useCreateFavoriteMutation, useGetAccountQuery } from "../app/moviesApiSlice";
 
 const FavoriteButton = ({movie_id, title, picture_url}) => {
-    const { data: favorites, isLoading } = useGetFavoritesQuery()
+    const { data, isLoading } = useGetFavoritesQuery()
+    const { data : account, isFetching } = useGetAccountQuery()
     const [deleteFavorite] = useDeleteFavoriteMutation()
     const [createFavorite] = useCreateFavoriteMutation()
-    const favorite = favorites.find(m => m.movie_id === movie_id)
-
+    if (isFetching) return <div>Loading...</div>
     if (isLoading) return <div>Loading...</div>
+    const favorite = data.favorites.find(m =>  {
+        if (m.movie_id === movie_id && account.email === m.account_email) {
+            return m
+        }
+    })
     if (!favorite) {
         return (
             <button

@@ -1,6 +1,11 @@
+import FavoriteButton from './FavoriteButton';
+import { useGetAccountQuery } from '../app/moviesApiSlice';
 import { useGetMovieQuery } from "../app/moviesApiSlice"
+import { useNavigate } from 'react-router-dom';
 
 function MovieDetail(props) {
+    const navigate = useNavigate()
+    const { data: account } = useGetAccountQuery()
     let movie_id = props.movie_id
     const { data, isLoading } = useGetMovieQuery(movie_id)
     if (isLoading) {
@@ -20,6 +25,12 @@ function MovieDetail(props) {
                         <img src={data.picture_url} className="card-img-top" alt="..." />
                         <div className="card-body">
                             <p className="card-text">Plot: {data.plot}</p>
+                            <p className="card-text">Genres: {data.genres.map((genre, index) => {
+                                if (index < data.genres.length - 1) {
+                                    return `${genre}, `
+                                }
+                                return genre
+                            })}</p>
                             <p className="card-text text-body-secondary">Length: {data.runtime} minutes</p>
                             <p className="card-text text-body-secondary">Released {data.release_year}</p>
                             <p className="card-text"><small className="text-body-secondary">Rating: {data.rating ? data.rating: "Not Rated"}</small></p>
@@ -27,6 +38,9 @@ function MovieDetail(props) {
                         </div>
                     </div>
                     <div className="modal-footer">
+                        <div className="col-4 text-end">
+                    { account ? <FavoriteButton movie_id={data.movie_id} title={data.title} picture_url={data.picture_url}/> : <button onClick={() => navigate("login")} className='btn btn-outline-primary' data-bs-dismiss="modal">Favorite</button>}
+                        </div>
                     </div>
                     </div>
                 </div>

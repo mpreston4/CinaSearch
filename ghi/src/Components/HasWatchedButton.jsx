@@ -1,9 +1,14 @@
-import { useGetFavoritesQuery, useUpdateFavoriteMutation } from "../app/moviesApiSlice";
+import { useGetFavoritesQuery, useUpdateFavoriteMutation, useGetAccountQuery } from "../app/moviesApiSlice";
 
 const HasWatchedButton = ({movie_id}) => {
     const { data, isLoading } = useGetFavoritesQuery();
-    const [updateFavorite] = useUpdateFavoriteMutation()
-    const favorite = data.find(m => m.movie_id === movie_id)
+    const { data : account } = useGetAccountQuery();
+    const [updateFavorite] = useUpdateFavoriteMutation();
+    const favorite = data.favorites.find(m =>  {
+        if (m.movie_id === movie_id && account.email === m.account_email) {
+            return m
+        }
+    })
 
     if (isLoading) {
         return (
@@ -15,9 +20,9 @@ const HasWatchedButton = ({movie_id}) => {
             <p>Watched?</p>
             <button
                 className="btn btn-primary"
-                onClick={() => updateFavorite(movie_id)}
+                onClick={() => updateFavorite({movie_id})}
             >
-               {data.has_watched ? "Yes" : "No"}
+               {data.has_watched ? "No" : "Yes"}
             </button>
         </div>
     )

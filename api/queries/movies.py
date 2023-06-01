@@ -21,6 +21,7 @@ class MovieOut(MovieIn):
     runtime: str
     is_adult: bool
     release_year: str
+    genres: List[str]
 
 class MovieList(BaseModel):
     movies: List[MovieIn]
@@ -103,7 +104,9 @@ class MovieQuery(Queries):
         runtime = movie["runtime"]["seconds"]
         d["runtime"] = str(int(runtime) // 60)
         d["release_year"] = movie["releaseYear"]["year"]
-
+        d["genres"] = []
+        for genre in movie["genres"]["genres"]:
+            d["genres"].append(genre["text"])
         url = f"https://moviesdatabase.p.rapidapi.com/titles/{movie_id}"
 
         querystring = {"info": "isAdult"}
