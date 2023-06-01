@@ -45,6 +45,8 @@ class MovieQuery(Queries):
                     count += 1
                     if count == 10:
                         return movie_list
+                if data["next"] is None:
+                    return movie_list
                 querystring["page"] = str(int(querystring["page"]) + 1)
                 response = requests.get(url, headers=headers, params=querystring)
                 data = response.json()
