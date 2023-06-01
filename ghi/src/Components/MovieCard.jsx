@@ -7,9 +7,10 @@ function MovieCard(props) {
     return (
         <div className="card mb-3">
             <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
-                <img className="card-img-top" src={movie.picture_url} alt="picture_url"/>
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={movieID}>Details</button>
+                {/* <img className="card-img-top" src={movie.picture_url} alt="picture_url"/> */}
+                <button type="button" className="btn" data-bs-toggle="modal" data-bs-target={movieID}>
+                    <img className="card-img-top" src={movie.picture_url} alt="picture_url"/>
+                </button>
                 <MovieDetail movie_id={movie.movie_id} />
             </div>
         </div>

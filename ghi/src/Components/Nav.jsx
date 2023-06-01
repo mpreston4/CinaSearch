@@ -18,7 +18,11 @@ function Nav() {
             <NavLink className="navbar-brand" to="/">Home</NavLink>
             {account&&<NavLink className="navbar-brand" to="favorites">
               My Favorites{` `}
-              {data.favorites && <span className="badge bg-dark">{data.favorites?.length}</span>
+              {data.favorites && <span className="badge bg-dark">{data.favorites?.filter(favorite => favorite.has_watched===false).length}</span>
+            }</NavLink>}
+            {account&&<NavLink className="navbar-brand" to="watchlist">
+              My Watched Movies{` `}
+              {data.favorites && <span className="badge bg-dark">{data.favorites?.filter(favorite => favorite.has_watched===true).length}</span>
             }</NavLink>}
             {!account&&<NavLink className="navbar-brand" to="signup">Signup</NavLink>}
             {!account&&<NavLink className="navbar-brand" to="login">Login</NavLink>}
