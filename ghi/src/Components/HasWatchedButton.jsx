@@ -4,19 +4,20 @@ const HasWatchedButton = ({movie_id}) => {
     const { data, isLoading } = useGetFavoritesQuery();
     const [updateFavorite] = useUpdateFavoriteMutation()
     const favorite = data.find(m => m.movie_id === movie_id)
-    
+
     if (isLoading) {
         return (
             <div>Loading...</div>
         )
     }
     return (
-        <div className="row mt-3">
+        <div>
+            <p>Watched?</p>
             <button
-                className="btn btn-outline-primary"
+                className="btn btn-primary"
                 onClick={() => updateFavorite(movie_id)}
             >
-                {data.has_watched ? "Watched" : "Not watched"}
+               {data.has_watched ? "Yes" : "No"}
             </button>
         </div>
     )

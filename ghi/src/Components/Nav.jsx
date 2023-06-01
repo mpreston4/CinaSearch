@@ -12,7 +12,7 @@ function Nav() {
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">Home</NavLink>
           {account&&<NavLink className="navbar-brand" to="favorites">
-            Favorites{` `}
+            My Favorites{` `}
             {favorites && <span className="badge bg-dark">{favorites?.length}</span>
           }</NavLink>}
           {!account&&<NavLink className="navbar-brand" to="signup">Signup</NavLink>}

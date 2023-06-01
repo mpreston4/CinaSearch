@@ -5,7 +5,7 @@ const FavoriteButton = ({movie_id, title, picture_url}) => {
     const [deleteFavorite] = useDeleteFavoriteMutation()
     const [createFavorite] = useCreateFavoriteMutation()
     const favorite = favorites.find(m => m.movie_id === movie_id)
-    
+
     if (isLoading) return <div>Loading...</div>
     if (!favorite) {
         return (
