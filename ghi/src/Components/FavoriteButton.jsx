@@ -26,6 +26,7 @@ const FavoriteButton = ({movie_id, title, picture_url}) => {
         <button
             className="btn btn-danger"
             onClick={() => deleteFavorite(favorite.movie_id)}
+            data-bs-dismiss="modal"
         >
             Unfavorite
         </button>
