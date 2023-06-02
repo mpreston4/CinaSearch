@@ -19,7 +19,7 @@ class MovieOut(MovieIn):
     plot: str
     rating: str | None
     runtime: str
-    is_adult: bool
+    # is_adult: bool
     release_year: str
     genres: List[str]
 

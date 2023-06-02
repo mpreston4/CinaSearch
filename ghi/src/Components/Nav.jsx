@@ -1,4 +1,4 @@
-import { NavLink, redirect, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useGetAccountQuery, useLogoutMutation, useGetFavoritesQuery } from '../app/moviesApiSlice';
 
 function Nav() {
