@@ -21,7 +21,7 @@ const MoviesList = () => {
     let search = Object.values(param)
     return (
         <>
-            <div className="d-flex justify-content-center row mt-3">
+            <div className="d-flex justify-content-center row mt-3" data-bs-theme="dark">
                 <h1 className='mb-3 text-center'>Search Results For: {search[0]}</h1>
                 {columns.map( column => {
                     return (
