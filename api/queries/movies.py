@@ -105,10 +105,13 @@ class MovieQuery(Queries):
         d["runtime"] = str(int(runtime) // 60)
         d["release_year"] = movie["releaseYear"]["year"]
         d["genres"] = []
-        for genre in movie["genres"]["genres"]:
-            d["genres"].append(genre["text"])
-        url = f"https://moviesdatabase.p.rapidapi.com/titles/{movie_id}"
+        if movie["genres"] is None:
+            d["genres"].append("Not listed")
+        else:
+            for genre in movie["genres"]["genres"]:
+                d["genres"].append(genre["text"])
 
+        url = f"https://moviesdatabase.p.rapidapi.com/titles/{movie_id}"
         querystring = {"info": "isAdult"}
 
         response = requests.get(url, headers=headers, params=querystring)
