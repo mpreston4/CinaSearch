@@ -105,12 +105,14 @@
 #   {
 #       "movie_id": string,
 #       "title": string,
+#       "picute_url": string,
 #       "plot": string,
-#       "is_adult": true,
+#       "rating": string
 #       "runtime": string,
 #       "release_year": string,
-#       "picute_url": string,
-#       "rating": string
+#       "genres": [
+#           "string"
+#       ]
 #   }
 
 
