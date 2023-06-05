@@ -61,7 +61,7 @@ function Nav() {
                       </NavLink>
                   </li>
                   <li>
-                      <NavLink className="dropdown-item" to="favorites">
+                      <NavLink className="dropdown-item" to="watchlist">
                         My Watched Movies{` `}
                         {data.favorites && <span className="badge bg-dark">{data.favorites?.filter(favorite => favorite.has_watched===true).length}</span>}
                       </NavLink>
