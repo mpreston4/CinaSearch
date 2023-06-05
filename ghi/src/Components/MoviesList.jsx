@@ -22,7 +22,7 @@ const MoviesList = () => {
     return (
         <>
             <div className="d-flex justify-content-center row mt-3" data-bs-theme="dark">
-                <h1 className='mb-3 text-center'>Search Results For: {search[0]}</h1>
+                <h1 className='mb-5 text-center text-white'>Search Results For: {search[0]}</h1>
                 {columns.map( column => {
                     return (
                     <div key={column[0].movie_id} className="col-3">

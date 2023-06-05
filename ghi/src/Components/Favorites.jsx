@@ -23,8 +23,8 @@ const Favorites = () => {
 
     }
     return (
-        <div className="d-flex justify-content-center row mt-3">
-            <h1 className="mb-3 text-center">Your Wishlist!</h1>
+        <div className="d-flex justify-content-center row mt-3" data-bs-theme="dark">
+            <h1 className="mb-5 text-center text-white">Your Wishlist!</h1>
                 {columns.map( column => {
                     return (
                         <div key={columns.indexOf(column)} className="col-3">
