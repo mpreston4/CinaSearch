@@ -51,17 +51,17 @@ function Nav() {
               </li>
               {account&&<li className="nav-item dropdown">
                 <NavLink className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Saved Movies
+                  Favorite Movies
                 </NavLink>
                 <ul className="dropdown-menu">
                   <li>
-                      <NavLink className="dropdown-item" to="favorites">
-                        My Watch List{` `}
+                      <NavLink className="dropdown-item" to="wishlist">
+                        My Wishlist{` `}
                         {data.favorites && <span className="badge bg-dark">{data.favorites?.filter(favorite => favorite.has_watched===false).length}</span>}
                       </NavLink>
                   </li>
                   <li>
-                      <NavLink className="dropdown-item" to="watchlist">
+                      <NavLink className="dropdown-item" to="watchedlist">
                         My Watched Movies{` `}
                         {data.favorites && <span className="badge bg-dark">{data.favorites?.filter(favorite => favorite.has_watched===true).length}</span>}
                       </NavLink>

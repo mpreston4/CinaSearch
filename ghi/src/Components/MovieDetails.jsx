@@ -2,6 +2,7 @@ import FavoriteButton from './FavoriteButton';
 import { useGetAccountQuery } from '../app/moviesApiSlice';
 import { useGetMovieQuery } from "../app/moviesApiSlice"
 import { useNavigate } from 'react-router-dom';
+import HasWatchedButton from './HasWatchedButton';
 
 function MovieDetail(props) {
     const navigate = useNavigate()
@@ -18,6 +19,7 @@ function MovieDetail(props) {
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div className="modal-content">
                     <div className="modal-header">
+                        <h2 className='text-center'>{data.title}</h2>
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
@@ -39,8 +41,10 @@ function MovieDetail(props) {
                     </div>
                     <div className="modal-footer">
                         <div className="col-4 text-end">
+                    { account ? <HasWatchedButton movie_id={data.movie_id} has_watched={props.has_watched} /> : ''}
                     { account ? <FavoriteButton movie_id={data.movie_id} title={data.title} picture_url={data.picture_url} /> : <button onClick={() => navigate("login")} className='btn btn-outline-primary' data-bs-dismiss="modal">Favorite</button>}
                         </div>
+
                     </div>
                     </div>
                 </div>

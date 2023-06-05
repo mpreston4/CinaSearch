@@ -9,9 +9,8 @@ const HasWatchedButton = (props) => {
 
     return (
         <div>
-            <p>Have you seen this movie?</p>
-            <button className="btn btn-primary" onClick={() => updateFavorite(movie_id)}>
-               {has_watched ? "No" : "Yes"}
+            <button data-bs-dismiss="modal" className="btn btn-primary" onClick={() => updateFavorite(movie_id)}>
+               {has_watched ? "Haven't Finished??" : "Finished Movie?"}
             </button>
         </div>
     )

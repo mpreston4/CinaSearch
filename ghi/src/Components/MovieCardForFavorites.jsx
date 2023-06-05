@@ -1,4 +1,3 @@
-import HasWatchedButton from "./HasWatchedButton";
 import MovieDetail from './MovieDetails';
 
 function MovieCardForFavorites(props) {
@@ -13,11 +12,8 @@ function MovieCardForFavorites(props) {
                         <button type="button" className="btn" data-bs-toggle="modal" data-bs-target={movieID}>
                             <img className="card-img-top" src={movie.picture_url} alt="picture_url"/>
                         </button>
-                        <MovieDetail movie_id={movie.movie_id} />
+                        <MovieDetail movie_id={movie.movie_id} has_watched={movie.has_watched} />
                     </div>
-                </div>
-                <div className="card-footer">
-                    <HasWatchedButton movie_id={movie.movie_id} has_watched={movie.has_watched}/>
                 </div>
             </div>
         </div>

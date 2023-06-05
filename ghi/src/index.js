@@ -42,11 +42,11 @@ const router = createBrowserRouter([
         element: <MovieDetail />
       },
       {
-        path: 'favorites',
+        path: 'wishlist',
         element: <Favorites />
       },
       {
-        path: 'watchlist',
+        path: 'watchedlist',
         element: <WatchedList />
       },
 
