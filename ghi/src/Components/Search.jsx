@@ -22,32 +22,34 @@ const Search = () => {
 
     return (
         <>
-            <div className="container">
+            <div className="container mb-5">
                 <div className="row">
                     <div className="col">
-                        <img className="d-flex justify-content-center mx-auto" style={{height: "300px", width: "300px"}} src={CineSearchLogo} alt=""/>
+                        <img className="d-flex justify-content-center mx-auto shadow-lg" style={{height: "300px", width: "300px"}} src={CineSearchLogo} alt=""/>
                     </div>
-                    <div className="col d-flex flex-column align-items-center">
-                        <div className="row justify-content-center">
-                            <div style={{width: "500px"}} className="input-group col-md-6 p-2">
-                                <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" className="form-control" placeholder="Search by title..." aria-describedby="basic-addon2"/>
-                                <div className="input-group-append">
-                                    <button onClick={handleTitleClick} className="btn btn-outline-warning" type="button">Search</button>
+                    <div className="col position-relative">
+                        <div className="position-absolute top-50 start-50 translate-middle">
+                            <div className="row">
+                                <div style={{width: "500px"}} className="input-group col-md-6 p-2">
+                                    <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" className="form-control" placeholder="Search by title..." aria-describedby="basic-addon2"/>
+                                    <div className="input-group-append">
+                                        <button onClick={handleTitleClick} className="btn btn-outline-warning" type="button">Search</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row justify-content-center">
-                            <div style={{width: "500px"}} className="input-group col-md-6 p-2">
-                                <select value={genre} onChange={(e) => setGenre(e.target.value)} className="form-select" placeholder="Search by genre..." aria-describedby="basic-addon2">
-                                    <option value="">Choose a Genre</option>
-                                    {data.genres.map(genre => {
-                                        return (
-                                            <option key={genre} value={genre}>{genre}</option>
-                                        )
-                                    })}
-                                </select>
-                                <div className="input-group-append">
-                                    <button onClick={handleGenreClick} className="btn btn-outline-warning" type="button">Search</button>
+                            <div className="row">
+                                <div style={{width: "500px"}} className="input-group col-md-6 p-2">
+                                    <select value={genre} onChange={(e) => setGenre(e.target.value)} className="form-select" placeholder="Search by genre..." aria-describedby="basic-addon2">
+                                        <option value="">Choose a Genre</option>
+                                        {data.genres.map(genre => {
+                                            return (
+                                                <option key={genre} value={genre}>{genre}</option>
+                                            )
+                                        })}
+                                    </select>
+                                    <div className="input-group-append">
+                                        <button onClick={handleGenreClick} className="btn btn-outline-warning" type="button">Search</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

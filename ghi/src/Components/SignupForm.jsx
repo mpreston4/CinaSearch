@@ -33,54 +33,55 @@ const Signup = () => {
     }
 
     return (
-        <div className="row">
-            <div className="col-md-6 offset-md-3">
-                <h1>Signup</h1>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="Signup_email" className="form-label">Email</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="Signup_email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="Signup_full_name" className="form-label">Full Name</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="Signup_full_name"
-                            value={full_name}
-                            onChange={(e) => setFullName(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="Signup_password" className="form-label">Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            id="Signup_password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="mb-3">
-                        <label htmlFor="Signup_password" className="form-label">Confirm Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            id="Signup_confirm_password"
-                            value={confirm_password}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                    </div>
-                    <button className="btn btn-primary">Create</button>
-                </form>
+            <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+                <div className="col-md-6 text-white bg-dark shadow p-3">
+                    <h1>Signup</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <label htmlFor="Signup_email" className="form-label">Email</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="Signup_email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                            <small id="emailHelp" className="form-text text-white">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Signup_full_name" className="form-label">Full Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="Signup_full_name"
+                                value={full_name}
+                                onChange={(e) => setFullName(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Signup_password" className="form-label">Password</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="Signup_password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="Signup_password" className="form-label">Confirm Password</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                id="Signup_confirm_password"
+                                value={confirm_password}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </div>
+                        <button className="btn btn-primary">Create</button>
+                    </form>
+                </div>
             </div>
-        </div>
     )
 }
 

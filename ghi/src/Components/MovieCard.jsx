@@ -12,7 +12,7 @@ function MovieCard(props) {
     let movieID = "#" + movie.movie_id
 
     return (
-        <div className="card mb-3">
+        <div className="card mb-3 shadow">
             <div className="card-body p-0 d-flex justify-content-center">
                 <button type='btn' className='btn p-0'>
                     <img className="card-img-top" src={movie.picture_url} alt="picture_url" data-bs-toggle="modal" data-bs-target={movieID}/>
