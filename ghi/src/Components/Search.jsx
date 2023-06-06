@@ -30,7 +30,7 @@ const Search = () => {
                     <div className="col position-relative">
                         <div className="position-absolute top-50 start-50 translate-middle">
                             <div className="row">
-                                <div style={{width: "500px"}} className="input-group col-md-6 p-2">
+                                <div style={{width: "350px"}} className="input-group col-md-6 p-2">
                                     <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" className="form-control" placeholder="Search by title..." aria-describedby="basic-addon2"/>
                                     <div className="input-group-append">
                                         <button onClick={handleTitleClick} className="btn btn-outline-warning" type="button">Search</button>
@@ -38,7 +38,7 @@ const Search = () => {
                                 </div>
                             </div>
                             <div className="row">
-                                <div style={{width: "500px"}} className="input-group col-md-6 p-2">
+                                <div style={{width: "350px"}} className="input-group col-md-6 p-2">
                                     <select value={genre} onChange={(e) => setGenre(e.target.value)} className="form-select" placeholder="Search by genre..." aria-describedby="basic-addon2">
                                         <option value="">Choose a Genre</option>
                                         {data.genres.map(genre => {
