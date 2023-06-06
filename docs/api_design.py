@@ -209,3 +209,17 @@
 #           "string"
 #       ]
 #   }
+
+### Get All Accounts
+
+# * Endpoint path: /api/genres
+# * Endpoint method: GET
+
+# * Response: List of account emails
+# * Response shape (JSON):
+
+#   {
+#       "accounts": [
+#           "string"
+#       ]
+#   }
