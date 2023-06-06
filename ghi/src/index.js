@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <MoviesList />,
       },
       {
-        path: 'login/',
+        path: 'login',
         element: <Login />
       },
       {

@@ -1,16 +1,12 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useGetAccountQuery, useLogoutMutation, useGetFavoritesQuery } from '../app/moviesApiSlice';
+import FavoriteNavLink from './FavoriteNavLink';
+import { useGetAccountQuery, useLogoutMutation } from '../app/moviesApiSlice';
 
 function Nav() {
     const { data: account } = useGetAccountQuery()
-    const { data, isLoading } = useGetFavoritesQuery()
     const [logout] = useLogoutMutation()
     const navigate = useNavigate()
-    if (isLoading) {
-      return (
-        <div>Loading...</div>
-      )
-    }
+
     return (
 
       <nav className="navbar navbar-expand-lg navbar navbar-dark bg-dark">
@@ -28,20 +24,7 @@ function Nav() {
                 <NavLink className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Favorite Movies
                 </NavLink>
-                <ul className="dropdown-menu">
-                  <li>
-                      <NavLink className="dropdown-item" to="wishlist">
-                        My Wishlist{` `}
-                        {data.favorites && <span className="badge bg-dark">{data.favorites?.filter(favorite => favorite.has_watched===false).length}</span>}
-                      </NavLink>
-                  </li>
-                  <li>
-                      <NavLink className="dropdown-item" to="watchedlist">
-                        My Watched Movies{` `}
-                        {data.favorites && <span className="badge bg-dark">{data.favorites?.filter(favorite => favorite.has_watched===true).length}</span>}
-                      </NavLink>
-                    </li>
-                </ul>
+                <FavoriteNavLink />
               </li>}
             </ul>
             <ul className="navbar-nav mb-2 mb-lg-0">

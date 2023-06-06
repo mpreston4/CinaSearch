@@ -1,19 +1,30 @@
-import { useUpdateFavoriteMutation, } from "../app/moviesApiSlice";
+import { useUpdateFavoriteMutation, useGetFavoritesQuery } from "../app/moviesApiSlice";
 
 const HasWatchedButton = (props) => {
-
+    const { data, isLoading } = useGetFavoritesQuery()
     const [updateFavorite] = useUpdateFavoriteMutation();
-    let has_watched = props.has_watched
-    let movie_id = props.movie_id
 
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
 
-    return (
-        <div>
-            <button data-bs-dismiss="modal" className="btn btn-primary" onClick={() => updateFavorite(movie_id)}>
-               {has_watched ? "Haven't Finished??" : "Finished Movie?"}
+    let favorite = data.favorites.find(m =>  {
+        if (m.movie_id === props.movie_id && props.email === m.account_email) {
+            return m
+        }
+    })
+
+    if (favorite) {
+        return (
+            <button data-bs-dismiss="modal" className="btn btn-primary" onClick={() => updateFavorite(props.movie_id)}>
+               {props.has_watched ? "Haven't Finished??" : "Finished Movie?"}
             </button>
-        </div>
-    )
+        )
+    } else {
+        return (
+            ""
+        )
+    }
 }
 
 

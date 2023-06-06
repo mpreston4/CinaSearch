@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoginMutation } from "../app/moviesApiSlice";
 import { useNavigate } from 'react-router-dom'
 
@@ -13,12 +13,17 @@ const Login = () => {
         e.preventDefault()
         login({username, password})
     }
-    if (result.isSuccess) {
-        navigate("/")
-    } else if (result.isError) {
-        setError(result.error)
-        console.error(error)
-    }
+
+    useEffect(() => {
+        if (result.isSuccess) {
+            navigate("/")
+        } else if (result.isError) {
+            console.log(result)
+            alert(result.error.data.detail)
+            setError(result.isError)
+            console.error(error)
+        }
+    }, [result])
     return (
         <div className="row">
             <div className="col-md-6 offset-md-3">

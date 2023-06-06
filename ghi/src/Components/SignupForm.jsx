@@ -1,31 +1,35 @@
 import { useState } from "react";
-import { useSignupMutation } from "../app/moviesApiSlice";
+import { useSignupMutation, useGetAllAccountsQuery } from "../app/moviesApiSlice";
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const navigate = useNavigate();
     const [signup, result] = useSignupMutation();
-    const [error, setError] = useState(null);
-
+    const { data, isLoading } = useGetAllAccountsQuery();
     const [email, setEmail] = useState('');
     const [full_name, setFullName] = useState('');
     const [password, setPassword] = useState('');
     const [confirm_password, setConfirmPassword] = useState('');
 
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
+    console.log(data)
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirm_password) {
-            signup({email, password, full_name});
+            if (data.accounts.includes(email)) {
+                alert("Email is already associated with an account")
+            } else {
+                signup({email, password, full_name});
+                if (result.isSuccess) {
+                    navigate("/");
+                }
+            }
         } else {
             alert("Passwords do not match!");
         }
-    }
-
-    if (result.isSuccess) {
-        navigate("/");
-    } else if (result.isError) {
-        setError(result.error);
-        console.error(error);
     }
 
     return (

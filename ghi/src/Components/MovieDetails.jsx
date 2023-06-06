@@ -41,7 +41,7 @@ function MovieDetail(props) {
                     </div>
                     <div className="modal-footer">
                         <div className="col-4 text-end">
-                    { account ? <HasWatchedButton movie_id={data.movie_id} has_watched={props.has_watched} /> : ''}
+                    { account ? <HasWatchedButton movie_id={data.movie_id} has_watched={props.has_watched} email={account.email}/> : ''}
                     { account ? <FavoriteButton movie_id={data.movie_id} title={data.title} picture_url={data.picture_url} /> : <button onClick={() => navigate("login")} className='btn btn-outline-primary' data-bs-dismiss="modal">Favorite</button>}
                         </div>
 

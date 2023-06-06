@@ -52,7 +52,7 @@ export const movieApi = createApi({
                     credentials: 'include',
                 }
             },
-            invalidatesTags: ['Account', 'Favorites']
+            invalidatesTags: ['Account', 'Favorites', 'Accounts']
         }),
         getAllGenres: builder.query({
             query: () => ({
@@ -72,7 +72,6 @@ export const movieApi = createApi({
                 credentials: 'include'
             }),
             providesTags: ['Favorites'],
-            // transformResponse: (response) => response?.favorites
         }),
         deleteFavorite: builder.mutation({
             query: (id) => ({
@@ -98,6 +97,12 @@ export const movieApi = createApi({
                 credentials: 'include'
             }),
             invalidatesTags: ['Favorites']
+        }),
+        getAllAccounts: builder.query({
+            query: () => ({
+                url: "/api/accounts"
+            }),
+            providesTags: ["Accounts"]
         })
     })
 })
@@ -113,5 +118,6 @@ export const {
     useGetFavoritesQuery,
     useDeleteFavoriteMutation,
     useCreateFavoriteMutation,
-    useUpdateFavoriteMutation
+    useUpdateFavoriteMutation,
+    useGetAllAccountsQuery,
  } = movieApi
