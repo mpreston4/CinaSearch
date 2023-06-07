@@ -23,9 +23,8 @@ const Signup = () => {
                 alert("Email is already associated with an account")
             } else {
                 signup({email, password, full_name});
-                if (result.isSuccess) {
-                    navigate("/");
-                }
+                navigate("/");
+
             }
         } else {
             alert("Passwords do not match!");
