@@ -2,16 +2,18 @@ import MovieCard from "./MovieCard";
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import { useLocation } from "react-router-dom";
 import ErrorPageLogo from "../images/ErrorPageLogo.jpg";
+import PrevNextButtons from "./Prev&NextButtons";
+
 
 
 const MoviesList = () => {
     const location = useLocation();
-
-    let param = location.state
+    let param = location.state;
     const { data, isLoading } = useGetAllMoviesQuery(param);
     if (isLoading) {
         return <p>Loading...</p>
     }
+    console.log(data)
 
     if (data.movies.length === 0) {
 
@@ -55,7 +57,15 @@ const MoviesList = () => {
                         </div>
                         )
                     })}
+                    <div className="d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                        <ul className="pagination">
+                            <PrevNextButtons param={param} data={data}/>
+                        </ul>
+                        </nav>
+                    </div>
                 </div>
+
             </>
         )
     }

@@ -10,13 +10,13 @@ const HomePage = () => {
     }
 
     const slides = [
-        [], [], [], [], []
+        [], [], []
     ]
 
     let i = 0;
     for (let movie of data.movies) {
         slides[i].push(movie);
-        if (slides[i].length === 2) {
+        if (slides[i].length === 3) {
             i += 1;
         }
     }
@@ -30,8 +30,6 @@ const HomePage = () => {
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
                 </div>
                 <div className="carousel-inner pb-5" data-bs-theme="dark">
                     {slides.map((movies, index) => {

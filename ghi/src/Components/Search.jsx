@@ -11,10 +11,10 @@ const Search = () => {
     const navigate = useNavigate();
 
     const handleTitleClick = () => {
-        navigate('/movies', {state: {title: title}});
+        navigate('/movies/1', {state: {title: title}});
     };
     const handleGenreClick = () => {
-        navigate('/movies', {state: {genre: genre}});
+        navigate('/movies/1', {state: {genre: genre}});
     };
     if (isLoading) {
         return <p>Loading...</p>

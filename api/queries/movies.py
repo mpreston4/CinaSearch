@@ -90,7 +90,7 @@ class MovieQuery(Queries):
                     if len(result["movies"]) == 1:
                         result["first_movie_index"] = data["results"].index(movie)
                     count += 1
-                    if count == 10:
+                    if count == 9:
                         result["api_end_page"] = data["page"]
                         result["last_movie_index"] = data["results"].index(movie)
                         if data["next"]:
@@ -148,7 +148,7 @@ class MovieQuery(Queries):
                     if len(result["movies"]) == 1:
                         result["first_movie_index"] = data["results"].index(movie)
                     count += 1
-                    if count == 10:
+                    if count == 9:
                         result["api_end_page"] = data["page"]
                         result["last_movie_index"] = data["results"].index(movie)
                         if data["next"]:
@@ -207,7 +207,7 @@ class MovieQuery(Queries):
                 if len(result["movies"]) == 1:
                     result["last_movie_index"] = index
                 count += 1
-                if count == 10:
+                if count == 9:
                     result["api_start_page"] = data["page"]
                     result["first_movie_index"] = index
                     if data["next"]:
@@ -250,7 +250,7 @@ class MovieQuery(Queries):
     def get_all_by_title(self, title: str, page: int, req_action: str, api_start_page: str, api_end_page: str, first_movie_index: int, last_movie_index: int):
         url = f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"
 
-        querystring = {"exact":"false","titleType":"movie","page": "1", "info": "base_info"}
+        querystring = {"exact":"false","titleType":"movie","page": "1", "info": "base_info", "startYear": "1980", "endYear": "2022"}
 
         if req_action == "":
             return self.first_ten(url, querystring)
