@@ -1,6 +1,8 @@
 import MovieCard from "./MovieCard";
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import { useLocation } from "react-router-dom";
+import ErrorPageLogo from "../images/ErrorPageLogo.jpg";
+
 
 const MoviesList = () => {
     const location = useLocation();
@@ -19,7 +21,10 @@ const MoviesList = () => {
                 <div className="d-flex justify-content-center row mt-3" data-bs-theme="dark">
                     <h1 className='mb-5 text-center text-white'>Sorry, no results found for: {search[0]}</h1>
                     <h2 className='mb-5 text-center text-white'>Please try searching by a different title</h2>
-                    <button className="btn btn-primary" style={{width: "200px"}} onClick={() => window.history.back()}>Go Back to previous page?</button>
+                    <img className="d-flex justify-content-center mx-auto shadow-lg mb-3" style={{height: "400px", width: "400px"}} src={ErrorPageLogo} alt=""/>
+                    <div className="d-flex justify-content-center p-2">
+                        <button className="btn btn-outline-primary" onClick={() => window.history.back()}>Go back</button>
+                    </div>
                 </div>
             </>
         )
