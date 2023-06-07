@@ -50,7 +50,7 @@ class MovieQuery(Queries):
             api_end_page: str,
             first_movie_index: int,
             last_movie_index: int,
-        ):
+    ):
 
         url = "https://moviesdatabase.p.rapidapi.com/titles"
 
@@ -288,7 +288,7 @@ class MovieQuery(Queries):
             api_end_page: str,
             first_movie_index: int,
             last_movie_index: int
-        ):
+    ):
 
         url = (
             f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"

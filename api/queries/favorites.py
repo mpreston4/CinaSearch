@@ -47,7 +47,7 @@ class FavoritesQueries(Queries):
         else:
             favorite["has_watched"] = False
 
-        result = self.collection.update_one(
+        self.collection.update_one(
             {"movie_id": movie_id, "account_email": account_email},
             {"$set": favorite}
         )
