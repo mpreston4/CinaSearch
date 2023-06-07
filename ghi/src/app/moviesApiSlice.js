@@ -11,7 +11,7 @@ export const movieApi = createApi({
                 url: "/api/movies",
                 params,
             }),
-            providesTags: [{type: 'Movie', id: 'LIST'}]
+            providesTags: [{type: 'Movies', id: 'LIST'}]
         }),
         getAccount: builder.query({
             query: () => ({
@@ -41,9 +41,83 @@ export const movieApi = createApi({
                     credentials: 'include',
                 }
             },
-            invalidatesTags: ['Account']
+            invalidatesTags: ['Account', 'Favorites']
+        }),
+        signup: builder.mutation({
+            query: (body) => {
+                return {
+                    url: '/api/accounts',
+                    method: 'POST',
+                    body,
+                    credentials: 'include',
+                }
+            },
+            invalidatesTags: ['Account', 'Favorites', 'Accounts']
+        }),
+        getAllGenres: builder.query({
+            query: () => ({
+                url: "/api/genres",
+            }),
+            providesTags: [{type: 'Genres', id: 'LIST'}]
+        }),
+        getMovie: builder.query({
+            query: (movie_id) => ({
+                url: `api/movies/${movie_id}`,
+            }),
+            providesTags: ["Movie"]
+        }),
+        getFavorites: builder.query({
+            query: () => ({
+                url: `/api/favorites`,
+                credentials: 'include'
+            }),
+            providesTags: ['Favorites'],
+        }),
+        deleteFavorite: builder.mutation({
+            query: (id) => ({
+                url: `/api/favorites/${id}`,
+                method: 'DELETE',
+                credentials: 'include'
+            }),
+            invalidatesTags: ['Favorites']
+        }),
+        createFavorite: builder.mutation({
+            query: (body) => ({
+                url: `/api/favorites`,
+                method: 'POST',
+                body,
+                credentials: 'include'
+            }),
+            invalidatesTags: ['Favorites']
+        }),
+        updateFavorite: builder.mutation({
+            query: (id) => ({
+                url: `/api/favorites/${id}`,
+                method: "PUT",
+                credentials: 'include'
+            }),
+            invalidatesTags: ['Favorites']
+        }),
+        getAllAccounts: builder.query({
+            query: () => ({
+                url: "/api/accounts"
+            }),
+            providesTags: ["Accounts"]
         })
     })
 })
 
-export const { useGetAllMoviesQuery, useGetAccountQuery, useLogoutMutation, useLoginMutation } = movieApi
+export const {
+    useGetAllMoviesQuery,
+    useGetAccountQuery,
+    useLogoutMutation,
+    useLoginMutation,
+    useSignupMutation,
+    useGetAllGenresQuery,
+    useGetMovieQuery,
+    useGetFavoritesQuery,
+    useDeleteFavoriteMutation,
+    useCreateFavoriteMutation,
+    useUpdateFavoriteMutation,
+    useGetAllAccountsQuery,
+ } = movieApi

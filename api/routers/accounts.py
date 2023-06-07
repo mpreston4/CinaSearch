@@ -8,8 +8,6 @@ from fastapi import (
 )
 from authenticator import authenticator
 
-from pydantic import BaseModel
-
 from queries.accounts import (
     AccountIn,
     AccountOut,
@@ -17,13 +15,14 @@ from queries.accounts import (
     DuplicateAccountError,
     AccountToken,
     AccountForm,
-    HttpError
+    HttpError,
+    AccountList
 )
 
 router = APIRouter()
 
 
-@router.post("/api/accounts", response_model=AccountToken | HttpError)
+@router.post("/api/accounts", response_model=AccountToken | str)
 async def create_account(
     info: AccountIn,
     request: Request,
@@ -53,3 +52,7 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+
+@router.get("/api/accounts", response_model=AccountList)
+async def get_all(repo: AccountQueries = Depends()):
+    return {"accounts": repo.get_all()}

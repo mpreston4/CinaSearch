@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from .client import Queries
+from typing import List
 from pymongo.errors import DuplicateKeyError
 from jwtdown_fastapi.authentication import Token
 
@@ -26,6 +27,9 @@ class AccountForm(BaseModel):
 class AccountToken(Token):
     account: AccountOut
 
+class AccountList(BaseModel):
+    accounts: List[str]
+
 class HttpError(BaseModel):
     detail: str
 
@@ -49,3 +53,9 @@ class AccountQueries(Queries):
         result = self.collection.find_one({"email": email})
         result["id"] = str(result["_id"])
         return AccountOutWithPassword(**result)
+
+    def get_all(self):
+        accounts = []
+        for account in self.collection.find():
+            accounts.append(account["email"])
+        return accounts

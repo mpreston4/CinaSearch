@@ -6,7 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import ErrorNotification from './Components/ErrorNotification';
 import HomePage from './Components/Home'
 import MoviesList from './Components/MoviesList';
+import MovieDetail from './Components/MovieDetails';
 import Login from './Components/LoginForm';
+import Signup from './Components/SignupForm';
+import Favorites from './Components/Favorites';
+import WatchedList from './Components/WatchedList';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { store } from './app/store';
@@ -19,16 +23,33 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: 'movies',
-        element: <MoviesList />
+        element: <MoviesList />,
       },
       {
         path: 'login',
         element: <Login />
       },
+      {
+        path: 'signup',
+        element: <Signup />
+      },
+      {
+        path: 'movies/:movie_id',
+        element: <MovieDetail />
+      },
+      {
+        path: 'wishlist',
+        element: <Favorites />
+      },
+      {
+        path: 'watchedlist',
+        element: <WatchedList />
+      },
+
     ],
   },
 ])
