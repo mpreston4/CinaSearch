@@ -31,7 +31,7 @@ const HomePage = () => {
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div className="container" style={{ width: '55vw'}}>
+                <div className="container" style={{ width: '90%'}}>
                     <div className="carousel-inner pb-5" data-bs-theme="dark">
                         {slides.map((movies, index) => {
                             if (index === 0) {
