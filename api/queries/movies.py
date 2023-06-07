@@ -4,16 +4,20 @@ from .client import Queries
 import requests
 from keys import MOVIES_DATABASE_API_KEY
 
+
 class InvalidID(ValueError):
     pass
 
+
 class DeleteStatus(BaseModel):
     success: bool
+
 
 class MovieIn(BaseModel):
     movie_id: str
     title: str
     picture_url: str
+
 
 class MovieOut(MovieIn):
     plot: str
@@ -21,6 +25,7 @@ class MovieOut(MovieIn):
     runtime: str
     release_year: str
     genres: List[str]
+
 
 class MovieList(BaseModel):
     movies: List[MovieIn]
@@ -31,9 +36,21 @@ class MovieList(BaseModel):
     last_movie_index: int | None
     next: bool
 
-class MovieQuery(Queries):
-    def get_all(self, startYear: str, titleType: str, endYear: str, genre: str, page: int, req_action: str, api_start_page: str, api_end_page: str, first_movie_index: int, last_movie_index: int):
 
+class MovieQuery(Queries):
+    def get_all(
+            self,
+            startYear: str,
+            titleType: str,
+            endYear: str,
+            genre: str,
+            page: int,
+            req_action: str,
+            api_start_page: str,
+            api_end_page: str,
+            first_movie_index: int,
+            last_movie_index: int,
+        ):
 
         url = "https://moviesdatabase.p.rapidapi.com/titles"
 
@@ -59,8 +76,6 @@ class MovieQuery(Queries):
             querystring["page"] = api_start_page
             return self.prev_ten(url, querystring, page, first_movie_index)
 
-
-
     def first_ten(self, url, querystring):
         data = self.api_call(url, querystring)
         result = {
@@ -80,7 +95,11 @@ class MovieQuery(Queries):
             while True:
                 movies = data["results"]
                 for movie in movies:
-                    if movie["primaryImage"] is None or movie["runtime"] is None or movie["plot"] is None:
+                    if (
+                        movie["primaryImage"] is None
+                        or movie["runtime"] is None
+                        or movie["plot"] is None
+                    ):
                         continue
                     d = {}
                     d["movie_id"] = movie["id"]
@@ -88,11 +107,15 @@ class MovieQuery(Queries):
                     d["picture_url"] = movie["primaryImage"]["url"]
                     result["movies"].append(MovieIn(**d))
                     if len(result["movies"]) == 1:
-                        result["first_movie_index"] = data["results"].index(movie)
+                        result["first_movie_index"] = (
+                            data["results"].index(movie)
+                        )
                     count += 1
                     if count == 9:
                         result["api_end_page"] = data["page"]
-                        result["last_movie_index"] = data["results"].index(movie)
+                        result["last_movie_index"] = (
+                            data["results"].index(movie)
+                        )
                         if data["next"]:
                             result["next"] = True
                         return result
@@ -138,7 +161,11 @@ class MovieQuery(Queries):
                     if first_loop:
                         if i < last_movie_index + 1:
                             continue
-                    if movie["primaryImage"] is None or movie["runtime"] is None or movie["plot"] is None:
+                    if (
+                        movie["primaryImage"] is None
+                        or movie["runtime"] is None
+                        or movie["plot"] is None
+                    ):
                         continue
                     d = {}
                     d["movie_id"] = movie["id"]
@@ -146,11 +173,15 @@ class MovieQuery(Queries):
                     d["picture_url"] = movie["primaryImage"]["url"]
                     result["movies"].append(MovieIn(**d))
                     if len(result["movies"]) == 1:
-                        result["first_movie_index"] = data["results"].index(movie)
+                        result["first_movie_index"] = (
+                            data["results"].index(movie)
+                        )
                     count += 1
                     if count == 9:
                         result["api_end_page"] = data["page"]
-                        result["last_movie_index"] = data["results"].index(movie)
+                        result["last_movie_index"] = (
+                            data["results"].index(movie)
+                        )
                         if data["next"]:
                             result["next"] = True
                         return result
@@ -188,7 +219,6 @@ class MovieQuery(Queries):
             }
             first_loop = True
 
-
         count = 0
         while True:
             movies = data["results"]
@@ -197,7 +227,11 @@ class MovieQuery(Queries):
                 upper_bound = first_movie_index - 1
             for index in range(upper_bound, -1, -1):
                 print(movies)
-                if movies[index]["primaryImage"] is None or movies[index]["runtime"] is None or movies[index]["plot"] is None:
+                if (
+                    movies[index]["primaryImage"] is None
+                    or movies[index]["runtime"] is None
+                    or movies[index]["plot"] is None
+                ):
                     continue
                 d = {}
                 d["movie_id"] = movies[index]["id"]
@@ -217,9 +251,7 @@ class MovieQuery(Queries):
             data = self.api_call(url, querystring)
             first_loop = False
 
-
-
-    def get_one(self, movie_id:str):
+    def get_one(self, movie_id: str):
         url = f"https://moviesdatabase.p.rapidapi.com/titles/{movie_id}"
 
         querystring = {"info": "base_info"}
@@ -227,7 +259,7 @@ class MovieQuery(Queries):
         data = self.api_call(url, querystring)
 
         movie = data["results"]
-        if data["results"] == None:
+        if data["results"] is None:
             raise InvalidID
         d = {}
         d["movie_id"] = movie["id"]
@@ -247,10 +279,29 @@ class MovieQuery(Queries):
 
         return MovieOut(**d)
 
-    def get_all_by_title(self, title: str, page: int, req_action: str, api_start_page: str, api_end_page: str, first_movie_index: int, last_movie_index: int):
-        url = f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"
+    def get_all_by_title(
+            self,
+            title: str,
+            page: int,
+            req_action: str,
+            api_start_page: str,
+            api_end_page: str,
+            first_movie_index: int,
+            last_movie_index: int
+        ):
 
-        querystring = {"exact":"false","titleType":"movie","page": "1", "info": "base_info", "startYear": "1980", "endYear": "2022"}
+        url = (
+            f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"
+        )
+
+        querystring = {
+            "exact": "false",
+            "titleType": "movie",
+            "page": "1",
+            "info": "base_info",
+            "startYear": "1980",
+            "endYear": "2022"
+        }
 
         if req_action == "":
             return self.first_ten(url, querystring)

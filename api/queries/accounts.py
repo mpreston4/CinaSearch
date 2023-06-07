@@ -4,40 +4,50 @@ from typing import List
 from pymongo.errors import DuplicateKeyError
 from jwtdown_fastapi.authentication import Token
 
+
 class DuplicateAccountError(ValueError):
     pass
+
 
 class AccountIn(BaseModel):
     email: str
     password: str
     full_name: str
 
+
 class AccountOut(BaseModel):
     id: str
     email: str
     full_name: str
 
+
 class AccountOutWithPassword(AccountOut):
-    hashed_password : str
+    hashed_password: str
+
 
 class AccountForm(BaseModel):
     username: str
     password: str
 
+
 class AccountToken(Token):
     account: AccountOut
+
 
 class AccountList(BaseModel):
     accounts: List[str]
 
+
 class HttpError(BaseModel):
     detail: str
+
 
 class AccountQueries(Queries):
 
     COLLECTION = "accounts"
 
     def create(self, account_in: AccountIn, hashed_password: str) -> AccountOut:
+
         account = account_in.dict()
         account['hashed_password'] = hashed_password
         account.pop('password')
