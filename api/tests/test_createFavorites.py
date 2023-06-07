@@ -6,6 +6,7 @@ from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class FakeFavoritesQueries:
     def create(self, favorite_in: MovieIn, account_email: str):
         return {
@@ -16,8 +17,10 @@ class FakeFavoritesQueries:
             "picture_url": favorite_in.picture_url,
         }
 
+
 def fake_get_current_account_data():
     return {"email": "string@example.com"}
+
 
 def test_create_favorite():
     app.dependency_overrides[FavoritesQueries] = FakeFavoritesQueries

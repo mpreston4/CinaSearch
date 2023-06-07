@@ -4,9 +4,11 @@ from main import app
 
 client = TestClient(app)
 
+
 class FakeGenreQuery():
     def get_all_genres(self):
         return []
+
 
 def test_get_all_genres():
     # Arrange

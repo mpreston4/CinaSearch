@@ -3,7 +3,8 @@ from fastapi import APIRouter, Depends
 
 router = APIRouter()
 
-@router.get('/api/genres', response_model = GenreList)
+
+@router.get('/api/genres', response_model=GenreList)
 def get_all_genres(
     repo: GenreQuery = Depends(),
 

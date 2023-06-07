@@ -4,6 +4,7 @@ from queries.movies import MovieQuery
 
 client = TestClient(app)
 
+
 class FakeMovieQuery:
     def get_one(self, movie_id: str):
         return {
@@ -16,6 +17,7 @@ class FakeMovieQuery:
             "is_adult": True,
             "release_year": "string"
         }
+
 
 def test_get_one():
     app.dependency_overrides[MovieQuery] = FakeMovieQuery

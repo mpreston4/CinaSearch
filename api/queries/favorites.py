@@ -3,15 +3,19 @@ from .movies import MovieIn
 from typing import List
 from .client import Queries
 
+
 class DuplicateError(ValueError):
     pass
+
 
 class FavoriteOut(MovieIn):
     account_email: str
     has_watched: bool
 
+
 class FavoriteList(BaseModel):
     favorites: List[FavoriteOut]
+
 
 class FavoritesQueries(Queries):
     COLLECTION = "favorites"
@@ -35,19 +39,25 @@ class FavoritesQueries(Queries):
         return favorite_list
 
     def update(self, movie_id: str, account_email: str):
-        favorite = self.collection.find_one({"movie_id": movie_id, "account_email": account_email})
-        if favorite["has_watched"] == False:
+        favorite = self.collection.find_one(
+            {"movie_id": movie_id, "account_email": account_email}
+        )
+        if favorite["has_watched"] is False:
             favorite["has_watched"] = True
         else:
             favorite["has_watched"] = False
 
         result = self.collection.update_one(
-            {"movie_id": movie_id, "account_email": account_email}, {"$set": favorite}
+            {"movie_id": movie_id, "account_email": account_email},
+            {"$set": favorite}
         )
         return FavoriteOut(**favorite)
 
     def delete(self, movie_id: str, account_email: str):
-        result = self.collection.delete_one({"movie_id": movie_id, "account_email": account_email})
+        result = self.collection.delete_one({
+            "movie_id": movie_id,
+            "account_email": account_email
+        })
         if result.deleted_count > 0:
             return True
         return False

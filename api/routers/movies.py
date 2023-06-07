@@ -3,7 +3,6 @@ from fastapi import (
     HTTPException,
     APIRouter,
 )
-import random
 from queries.movies import (
     MovieOut,
     MovieList,
@@ -12,6 +11,7 @@ from queries.movies import (
 )
 
 router = APIRouter()
+
 
 @router.get('/api/movies', response_model=MovieList)
 def get_all_movies(
@@ -29,9 +29,29 @@ def get_all_movies(
     last_movie_index: int = -1
 ):
     if title == "":
-        return repo.get_all(startYear, titleType, endYear, genre, page, req_action, api_start_page, api_end_page, first_movie_index, last_movie_index)
+        return repo.get_all(
+            startYear,
+            titleType,
+            endYear,
+            genre,
+            page,
+            req_action,
+            api_start_page,
+            api_end_page,
+            first_movie_index,
+            last_movie_index
+        )
     else:
-        return repo.get_all_by_title(title, page, req_action, api_start_page, api_end_page, first_movie_index, last_movie_index)
+        return repo.get_all_by_title(
+            title,
+            page,
+            req_action,
+            api_start_page,
+            api_end_page,
+            first_movie_index,
+            last_movie_index
+        )
+
 
 @router.get('/api/movies/{movie_id}', response_model=MovieOut)
 def get_movie_details(

@@ -1,17 +1,19 @@
 from fastapi.testclient import TestClient
 from main import app
-from queries.movies import MovieIn
 from queries.favorites import FavoritesQueries
 from authenticator import authenticator
 
 client = TestClient(app)
 
+
 class FakeFavoritesQueries:
     def get(self, account_email: str):
         return []
 
+
 def fake_get_current_account_data():
     return {"email": "firstnamelastname@gmail.com"}
+
 
 def test_get_favorites():
     # Arrange

@@ -15,7 +15,6 @@ from queries.accounts import (
     DuplicateAccountError,
     AccountToken,
     AccountForm,
-    HttpError,
     AccountList
 )
 
@@ -41,6 +40,7 @@ async def create_account(
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
 
+
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
@@ -52,6 +52,7 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+
 
 @router.get("/api/accounts", response_model=AccountList)
 async def get_all(repo: AccountQueries = Depends()):

@@ -10,6 +10,7 @@ client = MongoClient(f'mongodb://{MONGO_USER}:{MONGO_PASSWORD}@{MONGO_HOST}')
 db = client[MONGO_DB]
 db['accounts'].create_index("email", unique=True)
 
+
 class Queries:
     @property
     def collection(self):

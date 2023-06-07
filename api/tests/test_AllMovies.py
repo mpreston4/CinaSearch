@@ -4,9 +4,18 @@ from main import app
 
 client = TestClient(app)
 
+
 class FakeMovieQuery():
-    def get_all(self, startYear: str, titleType: str, endYear: str, genre: str, page: str):
+    def get_all(
+            self,
+            startYear: str,
+            titleType: str,
+            endYear: str,
+            genre: str,
+            page: str
+    ):
         return []
+
 
 def test_get_all_movies():
     # Arrange
@@ -19,4 +28,3 @@ def test_get_all_movies():
     # Assert
     assert response.status_code == 200
     assert data == {"movies": []}
-
