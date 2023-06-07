@@ -11,7 +11,14 @@ const MoviesList = () => {
     let param = location.state;
     const { data, isLoading } = useGetAllMoviesQuery(param);
     if (isLoading) {
-        return <p>Loading...</p>
+        return (
+        <div className="text-center">
+            <div style={{width: "400px", height: "400px"}} className="spinner-border text-light" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        )
+
     }
     console.log(data)
 

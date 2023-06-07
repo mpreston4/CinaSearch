@@ -6,7 +6,13 @@ const HomePage = () => {
     const { data, isLoading } = useGetAllMoviesQuery();
 
     if (isLoading) {
-        return <p>Loading...</p>
+        return (
+        <div className="text-center">
+            <div style={{width: "400px", height: "400px"}} className="spinner-border text-light" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        )
     }
 
     const slides = [

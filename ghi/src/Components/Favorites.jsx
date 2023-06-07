@@ -6,7 +6,11 @@ const Favorites = () => {
 
     if (isLoading) {
         return (
-            <div>Loading...</div>
+        <div className="text-center">
+            <div style={{width: "400px", height: "400px"}} className="spinner-border text-light" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </div>
         )
     }
 
