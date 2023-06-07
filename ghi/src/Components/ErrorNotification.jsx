@@ -1,18 +1,22 @@
 import { useRouteError, Link } from "react-router-dom";
+import ErrorPageLogo from "../images/ErrorPageLogo.jpg";
+
 function ErrorNotification(props) {
     const error = useRouteError()
-    console.log(error)
 
     return (
-        <div className="notification is-danger">
-            {props.error}
-            <h1>{error.status} {error.statusText}</h1>
-            <p>
-                <i>{error.data}</i>
-            </p>
-            <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Finzonedesign.com%2Fblog%2F28-cleverly-funny-creative-404-error-pages%2F&psig=AOvVaw20GdEEyLPpWYADzusDFaA4&ust=1685811138363000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPDE-oGGpf8CFQAAAAAdAAAAABAO" alt="Funny Dog" />
-            <button onClick={() => window.history.back()}>Go Back</button>
-            <Link to="/">Go back to homepage</Link>
+        <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+            <div className="col-md-6 text-white bg-dark shadow p-3 rounded-4">
+                {props.error}
+                <h1 className="text-center">{error.status} {error.statusText}</h1>
+                <p className="text-center">
+                    <i>{error.data}</i>
+                </p>
+                <img className="d-flex justify-content-center mx-auto shadow-lg mb-3" style={{height: "400px", width: "400px"}} src={ErrorPageLogo} alt=""/>
+                <div className="d-flex justify-content-center p-2">
+                    <button className="btn btn-outline-primary" onClick={() => window.history.back()}>Go Back</button>
+                </div>
+            </div>
         </div>
     );
 }

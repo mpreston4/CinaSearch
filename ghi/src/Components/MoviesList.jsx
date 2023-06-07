@@ -1,60 +1,63 @@
 import MovieCard from "./MovieCard";
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import { useLocation } from "react-router-dom";
+import ErrorPageLogo from "../images/ErrorPageLogo.jpg";
+
 
 const MoviesList = () => {
     const location = useLocation();
+
     let param = location.state
     const { data, isLoading } = useGetAllMoviesQuery(param);
     if (isLoading) {
         return <p>Loading...</p>
     }
-    const columns = [[], [], []]
-    let i = 0;
-    for (let movie of data.movies) {
-        columns[i].push(movie)
-        i += 1;
-        if (i === 3) {
-            i = 0;
+
+    if (data.movies.length === 0) {
+
+        let search = Object.values(param)
+        return (
+            <>
+                <div className="d-flex justify-content-center row mt-3" data-bs-theme="dark">
+                    <h1 className='mb-5 text-center text-white'>Sorry, no results found for: {search[0]}</h1>
+                    <h2 className='mb-5 text-center text-white'>Please try searching by a different title</h2>
+                    <img className="d-flex justify-content-center mx-auto shadow-lg mb-3" style={{height: "400px", width: "400px"}} src={ErrorPageLogo} alt=""/>
+                    <div className="d-flex justify-content-center p-2">
+                        <button className="btn btn-outline-primary" onClick={() => window.history.back()}>Go back</button>
+                    </div>
+                </div>
+            </>
+        )
+    } else {
+        const columns = [[], [], []]
+        let i = 0;
+        for (let movie of data.movies) {
+            columns[i].push(movie)
+            i += 1;
+            if (i === 3) {
+                i = 0;
+            }
         }
-    }
-    let search = Object.values(param)
-    return (
-        <>
-            <div className="d-flex justify-content-center row mt-3" data-bs-theme="dark">
-                <h1 className='mb-5 text-center text-white'>Search Results For: {search[0]}</h1>
-                {columns.map( column => {
-                    return (
-                    <div key={column[0].movie_id} className="col-3">
-                    {column.map( movie  => {
+
+        let search = Object.values(param)
+        return (
+            <>
+                <div className="d-flex justify-content-center row mt-3" data-bs-theme="dark">
+                    <h1 className='mb-5 text-center text-white'>Search Results For: {search[0]}</h1>
+                    {columns.map( column => {
                         return (
-                            <MovieCard key={movie.movie_id} movie={movie} />
+                        <div key={columns.indexOf(column)} className="col-3">
+                        {column.map( movie  => {
+                            return (
+                                <MovieCard key={movie.movie_id} movie={movie} />
+                            )
+                        })}
+                        </div>
                         )
                     })}
-                    </div>
-                    )
-                })}
-            </div>
-        </>
-    )
+                </div>
+            </>
+        )
+    }
 }
 export default MoviesList
-
-// const Movies = () => {
-//     return (
-//         <div className="d-flex justify-content-center row mt-3">
-//             <h1 className='mb-3'>Movies</h1>
-//             {columns.map( column => {
-//                 return (
-//                 <div className="col-3">
-//                 {column.map( movie  => {
-//                     return (
-//                         <MovieCard key={movie.movie_id} movie={movie} />
-//                     )
-//                 })}
-//                 </div>
-//                 )
-//             })}
-//         </div>
-//     )
-// }
