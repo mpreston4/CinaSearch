@@ -41,7 +41,7 @@ const MoviesList = () => {
                     <h1 className='mb-5 text-center text-white'>Search Results For: {search[0]}</h1>
                     {columns.map( column => {
                         return (
-                        <div key={column[0].movie_id} className="col-3">
+                        <div key={columns.indexOf(column)} className="col-3">
                         {column.map( movie  => {
                             return (
                                 <MovieCard key={movie.movie_id} movie={movie} />
