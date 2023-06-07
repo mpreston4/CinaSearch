@@ -1,7 +1,6 @@
 import { useRouteError, Link } from "react-router-dom";
 function ErrorNotification(props) {
     const error = useRouteError()
-    console.log(error)
 
     return (
         <div className="notification is-danger">

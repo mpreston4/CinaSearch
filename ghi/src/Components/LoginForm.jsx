@@ -1,29 +1,35 @@
 import { useState, useEffect } from "react";
-import { useLoginMutation } from "../app/moviesApiSlice";
+import { useLoginMutation, useGetAllAccountsQuery } from "../app/moviesApiSlice";
 import { useNavigate } from 'react-router-dom'
 
 
 const Login = () => {
+    const { data, isLoading } = useGetAllAccountsQuery();
     const navigate = useNavigate();
     const [login, result] = useLoginMutation();
-    const [error, setError] = useState(null)
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        login({username, password})
+        if (!data.accounts.includes(username)) {
+            alert("This username does not exist")
+        } else {login({username, password})}
     }
 
     useEffect(() => {
         if (result.isSuccess) {
             navigate("/")
         } else if (result.isError) {
-            console.log(result)
             alert(result.error.data.detail)
-            setError(result.isError)
-            console.error(error)
         }
     }, [result])
+
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
             <div className="col-md-6 text-white bg-dark shadow p-3 rounded-4">

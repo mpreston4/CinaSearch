@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const navigate = useNavigate();
-    const [signup, result] = useSignupMutation();
+    const [signup] = useSignupMutation();
     const { data, isLoading } = useGetAllAccountsQuery();
     const [email, setEmail] = useState('');
     const [full_name, setFullName] = useState('');
@@ -15,7 +15,6 @@ const Signup = () => {
         return <div>Loading...</div>
     }
 
-    console.log(data)
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirm_password) {
