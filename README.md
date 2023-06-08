@@ -2,7 +2,7 @@
 
 - Kekoa Kim
 - Mick Preston
-- David Dabov
+- David Dabov - https://gitlab.com/ddabov20
 - Tristen Abella
 - Yinglin Hu
 
