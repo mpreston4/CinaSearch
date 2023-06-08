@@ -11,12 +11,12 @@ class GenreList(BaseModel):
 
 class GenreQuery(Queries):
     def get_all_genres(self):
-        MOVIES_DATABASE_API_KEY = os.environ.get("MOVIES_DATABASE_API_KEY", '')
-        url = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres'
+        MOVIES_DATABASE_API_KEY = os.environ.get("MOVIES_DATABASE_API_KEY", "")
+        url = "https://moviesdatabase.p.rapidapi.com/titles/utils/genres"
 
         headers = {
             "X-RapidAPI-Key": MOVIES_DATABASE_API_KEY,
-            "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com"
+            "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
         }
         response = requests.get(url, headers=headers)
         data = response.json()

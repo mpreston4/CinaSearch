@@ -5,7 +5,7 @@ from main import app
 client = TestClient(app)
 
 
-class FakeGenreQuery():
+class FakeGenreQuery:
     def get_all_genres(self):
         return []
 

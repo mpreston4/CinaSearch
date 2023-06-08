@@ -1,9 +1,4 @@
-from fastapi import (
-    Depends,
-    HTTPException,
-    APIRouter,
-    status
-)
+from fastapi import Depends, HTTPException, APIRouter, status
 from queries.favorites import FavoriteOut, MovieIn, FavoriteList
 from authenticator import authenticator
 from queries.favorites import FavoritesQueries, DuplicateError
@@ -18,10 +13,7 @@ def create_favorite(
     queries: FavoritesQueries = Depends(),
 ):
     try:
-        favorite = queries.create(
-            favorite_in,
-            account_email=account_data["email"]
-        )
+        favorite = queries.create(favorite_in, account_email=account_data["email"])
     except DuplicateError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

@@ -31,7 +31,7 @@ def test_create_favorite():
     favorite_in = {
         "movie_id": "12345",
         "title": "Test",
-        "picture_url": "www.picture.com"
+        "picture_url": "www.picture.com",
     }
     res = client.post("/api/favorites", json=favorite_in)
     data = res.json()
@@ -42,7 +42,7 @@ def test_create_favorite():
         "has_watched": True,
         "movie_id": "12345",
         "title": "Test",
-        "picture_url": "www.picture.com"
+        "picture_url": "www.picture.com",
     }
 
     app.dependency_overrides = {}

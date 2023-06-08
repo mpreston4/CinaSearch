@@ -48,16 +48,14 @@ class FavoritesQueries(Queries):
             favorite["has_watched"] = False
 
         self.collection.update_one(
-            {"movie_id": movie_id, "account_email": account_email},
-            {"$set": favorite}
+            {"movie_id": movie_id, "account_email": account_email}, {"$set": favorite}
         )
         return FavoriteOut(**favorite)
 
     def delete(self, movie_id: str, account_email: str):
-        result = self.collection.delete_one({
-            "movie_id": movie_id,
-            "account_email": account_email
-        })
+        result = self.collection.delete_one(
+            {"movie_id": movie_id, "account_email": account_email}
+        )
         if result.deleted_count > 0:
             return True
         return False
