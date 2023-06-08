@@ -1,8 +1,8 @@
-import { useRouteError, Link } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 import ErrorPageLogo from "../images/ErrorPageLogo.jpg";
 
 function ErrorNotification(props) {
-    const error = useRouteError()
+    const error = useRouteError();
 
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
@@ -12,7 +12,7 @@ function ErrorNotification(props) {
                 <p className="text-center">
                     <i>{error.data}</i>
                 </p>
-                <img className="d-flex justify-content-center mx-auto shadow-lg mb-3" style={{height: "400px", width: "400px"}} src={ErrorPageLogo} alt=""/>
+                <img className="d-flex justify-content-center mx-auto shadow-lg mb-3" style={{ height: "400px", width: "400px" }} src={ErrorPageLogo} alt="" />
                 <div className="d-flex justify-content-center p-2">
                     <button className="btn btn-outline-primary" onClick={() => window.history.back()}>Go Back</button>
                 </div>
