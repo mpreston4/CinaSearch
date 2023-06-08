@@ -1,11 +1,11 @@
 import MovieCard from "./MovieCard";
 
 function MovieSlide(props) {
-    return(
+    return (
         <div className={props.class}>
             <div className="d-flex justify-content-center row mt-3">
                 {props.movies.map(movie => {
-                    return(
+                    return (
                         <div key={movie.movie_id} className="col-3">
                             <MovieCard key={movie.movie_id} movie={movie} />
                         </div>
