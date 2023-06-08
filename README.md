@@ -1,7 +1,7 @@
 # CinaSearch
 
 - Kekoa Kim https://gitlab.com/KekoaKim
-- Mick Preston
+- Mick Preston - https://gitlab.com/mpreston4
 - David Dabov - https://gitlab.com/ddabov20
 - Tristen Abella - https://gitlab.com/tristenabella
 - Yinglin Hu - https://gitlab.com/Yinglin.Hu
@@ -9,7 +9,7 @@
 ## Design
 
 - [API design](docs/api_design.py)
-- [GHI](docs/wireframe.png)
+- [GHI](docs/CinaSearch_Wireframe.png)
 - [Integration](docs/integration.md)
 
 ## Intended market
