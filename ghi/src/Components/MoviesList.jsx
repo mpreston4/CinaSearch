@@ -20,7 +20,6 @@ const MoviesList = () => {
         )
 
     }
-    console.log(data)
 
     if (data.movies.length === 0) {
 
