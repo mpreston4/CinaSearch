@@ -4,7 +4,7 @@
 - Mick Preston
 - David Dabov - https://gitlab.com/ddabov20
 - Tristen Abella - https://gitlab.com/tristenabella
-- Yinglin Hu
+- Yinglin Hu - https://gitlab.com/Yinglin.Hu
 
 ## Design
 
