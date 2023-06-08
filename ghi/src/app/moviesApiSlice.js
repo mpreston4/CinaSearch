@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const movieApi = createApi({
     reducerPath: 'movies',
@@ -11,7 +11,7 @@ export const movieApi = createApi({
                 url: "/api/movies",
                 params,
             }),
-            providesTags: [{type: 'Movies', id: 'LIST'}]
+            providesTags: [{ type: 'Movies', id: 'LIST' }]
         }),
         getAccount: builder.query({
             query: () => ({
@@ -30,7 +30,7 @@ export const movieApi = createApi({
             invalidatesTags: ['Account'],
         }),
         login: builder.mutation({
-            query: ({username, password}) => {
+            query: ({ username, password }) => {
                 const body = new FormData()
                 body.append('username', username);
                 body.append('password', password);
@@ -58,7 +58,7 @@ export const movieApi = createApi({
             query: () => ({
                 url: "/api/genres",
             }),
-            providesTags: [{type: 'Genres', id: 'LIST'}]
+            providesTags: [{ type: 'Genres', id: 'LIST' }]
         }),
         getMovie: builder.query({
             query: (movie_id) => ({
@@ -120,4 +120,4 @@ export const {
     useCreateFavoriteMutation,
     useUpdateFavoriteMutation,
     useGetAllAccountsQuery,
- } = movieApi
+} = movieApi
