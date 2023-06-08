@@ -80,7 +80,7 @@
 # * Endpoint path: /api/movies
 # * Endpoint method: GET
 
-# * Response: A list of movies
+# * Response: A list of movies and values to indicate the next/prev set of movies
 # * Response shape (JSON):
 
 #   {
@@ -91,6 +91,12 @@
 #               "picture_url": string,
 #           }
 #          ]
+#       "current_page": int,
+#       "api_start_page": str,
+#       "api_end_page": str,
+#       "first_movie_index": int,
+#       "last_movie_index": int,
+#       "next": true
 #   }
 
 
