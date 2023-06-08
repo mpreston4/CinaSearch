@@ -1,6 +1,6 @@
 # CinaSearch
 
-- Kekoa Kim
+- Kekoa Kim https://gitlab.com/KekoaKim
 - Mick Preston
 - David Dabov
 - Tristen Abella

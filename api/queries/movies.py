@@ -39,19 +39,18 @@ class MovieList(BaseModel):
 
 class MovieQuery(Queries):
     def get_all(
-            self,
-            startYear: str,
-            titleType: str,
-            endYear: str,
-            genre: str,
-            page: int,
-            req_action: str,
-            api_start_page: str,
-            api_end_page: str,
-            first_movie_index: int,
-            last_movie_index: int,
+        self,
+        startYear: str,
+        titleType: str,
+        endYear: str,
+        genre: str,
+        page: int,
+        req_action: str,
+        api_start_page: str,
+        api_end_page: str,
+        first_movie_index: int,
+        last_movie_index: int,
     ):
-
         url = "https://moviesdatabase.p.rapidapi.com/titles"
 
         querystring = {
@@ -107,15 +106,11 @@ class MovieQuery(Queries):
                     d["picture_url"] = movie["primaryImage"]["url"]
                     result["movies"].append(MovieIn(**d))
                     if len(result["movies"]) == 1:
-                        result["first_movie_index"] = (
-                            data["results"].index(movie)
-                        )
+                        result["first_movie_index"] = data["results"].index(movie)
                     count += 1
                     if count == 9:
                         result["api_end_page"] = data["page"]
-                        result["last_movie_index"] = (
-                            data["results"].index(movie)
-                        )
+                        result["last_movie_index"] = data["results"].index(movie)
                         if data["next"]:
                             result["next"] = True
                         return result
@@ -173,15 +168,11 @@ class MovieQuery(Queries):
                     d["picture_url"] = movie["primaryImage"]["url"]
                     result["movies"].append(MovieIn(**d))
                     if len(result["movies"]) == 1:
-                        result["first_movie_index"] = (
-                            data["results"].index(movie)
-                        )
+                        result["first_movie_index"] = data["results"].index(movie)
                     count += 1
                     if count == 9:
                         result["api_end_page"] = data["page"]
-                        result["last_movie_index"] = (
-                            data["results"].index(movie)
-                        )
+                        result["last_movie_index"] = data["results"].index(movie)
                         if data["next"]:
                             result["next"] = True
                         return result
@@ -280,19 +271,16 @@ class MovieQuery(Queries):
         return MovieOut(**d)
 
     def get_all_by_title(
-            self,
-            title: str,
-            page: int,
-            req_action: str,
-            api_start_page: str,
-            api_end_page: str,
-            first_movie_index: int,
-            last_movie_index: int
+        self,
+        title: str,
+        page: int,
+        req_action: str,
+        api_start_page: str,
+        api_end_page: str,
+        first_movie_index: int,
+        last_movie_index: int,
     ):
-
-        url = (
-            f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"
-        )
+        url = f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"
 
         querystring = {
             "exact": "false",
@@ -300,7 +288,7 @@ class MovieQuery(Queries):
             "page": "1",
             "info": "base_info",
             "startYear": "1980",
-            "endYear": "2022"
+            "endYear": "2022",
         }
 
         if req_action == "":
@@ -313,11 +301,11 @@ class MovieQuery(Queries):
             return self.prev_ten(url, querystring, page, first_movie_index)
 
     def api_call(self, url, querystring):
-        MOVIES_DATABASE_API_KEY = os.environ.get("MOVIES_DATABASE_API_KEY", '')
+        MOVIES_DATABASE_API_KEY = os.environ.get("MOVIES_DATABASE_API_KEY", "")
 
         headers = {
             "X-RapidAPI-Key": MOVIES_DATABASE_API_KEY,
-            "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com"
+            "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
         }
         response = requests.get(url, headers=headers, params=querystring)
         return response.json()

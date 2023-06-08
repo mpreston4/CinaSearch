@@ -15,15 +15,15 @@ class FakeMovieQuery:
             "rating": "string",
             "runtime": "string",
             "is_adult": True,
-            "release_year": "string"
+            "release_year": "string",
         }
 
 
 def test_get_one():
     app.dependency_overrides[MovieQuery] = FakeMovieQuery
 
-    response = client.get('/api/movies/movie1')
+    response = client.get("/api/movies/movie1")
     data = response.json()
 
     assert response.status_code == 200
-    assert data['movie_id'] == "movie1"
+    assert data["movie_id"] == "movie1"

@@ -5,14 +5,9 @@ from main import app
 client = TestClient(app)
 
 
-class FakeMovieQuery():
+class FakeMovieQuery:
     def get_all(
-            self,
-            startYear: str,
-            titleType: str,
-            endYear: str,
-            genre: str,
-            page: str
+        self, startYear: str, titleType: str, endYear: str, genre: str, page: str
     ):
         return []
 
