@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from .client import Queries
 import requests
-from keys import MOVIES_DATABASE_API_KEY
+import os
 
 
 class InvalidID(ValueError):
@@ -313,6 +313,8 @@ class MovieQuery(Queries):
             return self.prev_ten(url, querystring, page, first_movie_index)
 
     def api_call(self, url, querystring):
+        MOVIES_DATABASE_API_KEY = os.environ.get("MOVIES_DATABASE_API_KEY", '')
+
         headers = {
             "X-RapidAPI-Key": MOVIES_DATABASE_API_KEY,
             "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com"

@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List
 from .client import Queries
 import requests
-from keys import MOVIES_DATABASE_API_KEY
+import os
 
 
 class GenreList(BaseModel):
@@ -11,6 +11,7 @@ class GenreList(BaseModel):
 
 class GenreQuery(Queries):
     def get_all_genres(self):
+        MOVIES_DATABASE_API_KEY = os.environ.get("MOVIES_DATABASE_API_KEY", '')
         url = 'https://moviesdatabase.p.rapidapi.com/titles/utils/genres'
 
         headers = {

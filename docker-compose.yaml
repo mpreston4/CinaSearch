@@ -26,6 +26,7 @@ services:
       - MONGO_PASSWORD=movies_password
       - MONGO_HOST=mongo
       - MONGO_DB=movies-db
+      - MOVIES_DATABASE_API_KEY=${MOVIES_DATABASE_API_KEY}
 
   ghi:
     image: node:lts-bullseye
