@@ -3,7 +3,7 @@
 - Kekoa Kim
 - Mick Preston
 - David Dabov - https://gitlab.com/ddabov20
-- Tristen Abella
+- Tristen Abella - https://gitlab.com/tristenabella
 - Yinglin Hu
 
 ## Design
