@@ -34,7 +34,11 @@ To fully enjoy this application on your local machine, please make sure to follo
 
 1. Clone the repository down to your local machine
 2. CD into the new project directory
-3. Run `docker volume create movies-data`
-4. Run `docker compose build`
-5. Run `docker compose up`
-6. Explore CinaSearch
+3. Create a .env file on the base-level 
+4. Add SIGNING_KEY: and MOVIES_DATABASE_API_KEY: 
+5. To get your SIGNING_KEY run openssl rand -hex 32 in your terminal
+6. To get your MOVIES_DATABASE_API_KEY go to https://rapidapi.com/SAdrian/api/moviesdatabase/  and subscribe
+7. Run `docker volume create movies-data`
+8. Run `docker compose build`
+9. Run `docker compose up`
+10. Explore CinaSearch
