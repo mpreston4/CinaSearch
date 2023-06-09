@@ -1,10 +1,11 @@
-import { NavLink, useNavigate } from 'react-router-dom';
-import FavoriteNavLink from './FavoriteNavLink';
-import { useGetAccountQuery, useLogoutMutation } from '../app/moviesApiSlice';
+import { NavLink, useNavigate } from "react-router-dom";
+import { useGetAccountQuery, useLogoutMutation } from "../app/moviesApiSlice";
+import FavoriteNavLink from "./FavoriteNavLink";
 
 function Nav() {
     const { data: account } = useGetAccountQuery();
     const [logout] = useLogoutMutation();
+
     const navigate = useNavigate();
 
     return (

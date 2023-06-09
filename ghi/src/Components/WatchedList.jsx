@@ -4,11 +4,7 @@ import MovieCardForFavorites from "./MovieCardForFavorites";
 function WatchedList() {
     const { data, isLoading } = useGetFavoritesQuery();
 
-    if (isLoading) {
-        return (
-            <div>Loading...</div>
-        );
-    }
+    if (isLoading) return <div>Loading...</div>
 
     const columns = [[], [], []];
     let i = 0;

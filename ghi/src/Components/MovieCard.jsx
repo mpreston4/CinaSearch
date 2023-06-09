@@ -1,13 +1,11 @@
-import MovieDetail from './MovieDetails';
-import FavoriteStar from './FavoriteStar';
+import MovieDetail from "./MovieDetails";
+import FavoriteStar from "./FavoriteStar";
 import { useGetAccountQuery } from "../app/moviesApiSlice";
 
 function MovieCard(props) {
     const { data: account, isLoading } = useGetAccountQuery();
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
+    if (isLoading) return <div>Loading...</div>
 
     let movie = props.movie;
     let movieID = "#" + movie.movie_id;

@@ -15,10 +15,7 @@ function HomePage() {
         );
     }
 
-    const slides = [
-        [], [], []
-    ];
-
+    const slides = [[], [], []];
     let i = 0;
     for (let movie of data.movies) {
         slides[i].push(movie);

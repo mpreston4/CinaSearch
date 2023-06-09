@@ -1,25 +1,23 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useGetAllGenresQuery } from "../app/moviesApiSlice";
 import CineSearchLogo from "../images/CineSearchLogo.png";
 
 function Search() {
     const { data, isLoading } = useGetAllGenresQuery();
+
+    const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [genre, setGenre] = useState('');
 
-    const navigate = useNavigate();
-
     const handleTitleClick = () => {
         navigate('/movies/1', { state: { title: title } });
-    };
+    }
     const handleGenreClick = () => {
         navigate('/movies/1', { state: { genre: genre } });
-    };
-
-    if (isLoading) {
-        return <p>Loading...</p>
     }
+
+    if (isLoading) return <p>Loading...</p>
 
     return (
         <div className="container mb-5">
@@ -58,6 +56,5 @@ function Search() {
         </div>
     );
 };
-
 
 export default Search;

@@ -1,11 +1,12 @@
-import { useDeleteFavoriteMutation } from '../app/moviesApiSlice';
-import MovieDetail from './MovieDetails';
+import { useDeleteFavoriteMutation } from "../app/moviesApiSlice";
+import MovieDetail from "./MovieDetails";
 
 function MovieCardForFavorites(props) {
+    const [deleteFavorite] = useDeleteFavoriteMutation();
+
     let movie = props.movie;
     let movieID = "#" + movie.movie_id;
     let has_watched = movie.has_watched;
-    const [deleteFavorite] = useDeleteFavoriteMutation();
 
     return (
         <div className="card mb-3 shadow">

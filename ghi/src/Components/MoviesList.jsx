@@ -1,6 +1,6 @@
-import MovieCard from "./MovieCard";
 import { useGetAllMoviesQuery } from "../app/moviesApiSlice";
 import { useLocation } from "react-router-dom";
+import MovieCard from "./MovieCard";
 import ErrorPageLogo from "../images/ErrorPageLogo.jpg";
 import PrevNextButtons from "./Prev&NextButtons";
 
@@ -35,7 +35,7 @@ function MoviesList() {
         const columns = [[], [], []];
         let i = 0;
         for (let movie of data.movies) {
-            columns[i].push(movie)
+            columns[i].push(movie);
             i += 1;
             if (i === 3) {
                 i = 0;
@@ -68,4 +68,5 @@ function MoviesList() {
         );
     }
 }
+
 export default MoviesList;

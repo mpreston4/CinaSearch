@@ -4,11 +4,8 @@ import { NavLink } from "react-router-dom";
 function FavoriteNavLink() {
     const { data, isLoading } = useGetFavoritesQuery();
 
-    if (isLoading) {
-        return (
-            <div>Loading...</div>
-        );
-    }
+    if (isLoading) return <div>Loading...</div>
+
     return (
         <ul className="dropdown-menu">
             <li>

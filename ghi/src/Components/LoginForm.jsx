@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useLoginMutation, useGetAllAccountsQuery } from "../app/moviesApiSlice";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const { data, isLoading } = useGetAllAccountsQuery();
-    const navigate = useNavigate();
     const [login, result] = useLoginMutation();
+
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -26,9 +27,7 @@ function Login() {
         }
     }, [result]);
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
+    if (isLoading) return <div>Loading...</div>
 
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>

@@ -3,13 +3,13 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const movieApi = createApi({
     reducerPath: 'movies',
     baseQuery: fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_API_HOST,
+        baseUrl: process.env.REACT_APP_API_HOST
     }),
     endpoints: (builder) => ({
         getAllMovies: builder.query({
             query: (params) => ({
-                url: "/api/movies",
-                params,
+                url: '/api/movies',
+                params
             }),
             providesTags: [{ type: 'Movies', id: 'LIST' }]
         }),
@@ -19,26 +19,26 @@ export const movieApi = createApi({
                 credentials: 'include'
             }),
             transformResponse: (response) => response?.account || null,
-            providesTags: ['Account'],
+            providesTags: ['Account']
         }),
         logout: builder.mutation({
             query: () => ({
                 url: 'token',
                 method: 'DELETE',
-                credentials: 'include',
+                credentials: 'include'
             }),
-            invalidatesTags: ['Account'],
+            invalidatesTags: ['Account']
         }),
         login: builder.mutation({
             query: ({ username, password }) => {
-                const body = new FormData()
+                const body = new FormData();
                 body.append('username', username);
                 body.append('password', password);
                 return {
                     url: '/token',
                     method: 'POST',
                     body,
-                    credentials: 'include',
+                    credentials: 'include'
                 }
             },
             invalidatesTags: ['Account', 'Favorites']
@@ -49,29 +49,29 @@ export const movieApi = createApi({
                     url: '/api/accounts',
                     method: 'POST',
                     body,
-                    credentials: 'include',
+                    credentials: 'include'
                 }
             },
             invalidatesTags: ['Account', 'Favorites', 'Accounts']
         }),
         getAllGenres: builder.query({
             query: () => ({
-                url: "/api/genres",
+                url: '/api/genres'
             }),
             providesTags: [{ type: 'Genres', id: 'LIST' }]
         }),
         getMovie: builder.query({
             query: (movie_id) => ({
-                url: `api/movies/${movie_id}`,
+                url: `api/movies/${movie_id}`
             }),
-            providesTags: ["Movie"]
+            providesTags: ['Movie']
         }),
         getFavorites: builder.query({
             query: () => ({
                 url: `/api/favorites`,
                 credentials: 'include'
             }),
-            providesTags: ['Favorites'],
+            providesTags: ['Favorites']
         }),
         deleteFavorite: builder.mutation({
             query: (id) => ({
@@ -93,16 +93,16 @@ export const movieApi = createApi({
         updateFavorite: builder.mutation({
             query: (id) => ({
                 url: `/api/favorites/${id}`,
-                method: "PUT",
+                method: 'PUT',
                 credentials: 'include'
             }),
             invalidatesTags: ['Favorites']
         }),
         getAllAccounts: builder.query({
             query: () => ({
-                url: "/api/accounts"
+                url: '/api/accounts'
             }),
-            providesTags: ["Accounts"]
+            providesTags: ['Accounts']
         })
     })
 })

@@ -5,9 +5,7 @@ function FavoriteStar(props) {
     const [deleteFavorite] = useDeleteFavoriteMutation();
     const [createFavorite] = useCreateFavoriteMutation();
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
+    if (isLoading) return <div>Loading...</div>
 
     let movie = props.movie;
     let email = props.email;

@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { useSignupMutation, useGetAllAccountsQuery } from "../app/moviesApiSlice";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
-    const navigate = useNavigate();
     const [signup] = useSignupMutation();
     const { data, isLoading } = useGetAllAccountsQuery();
+
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [full_name, setFullName] = useState('');
     const [password, setPassword] = useState('');
     const [confirm_password, setConfirmPassword] = useState('');
-
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,6 +25,8 @@ function Signup() {
             alert("Passwords do not match!");
         }
     }
+
+    if (isLoading) return <div>Loading...</div>
 
     return (
         <div className="container d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>

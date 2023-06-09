@@ -1,18 +1,17 @@
-import FavoriteButton from './FavoriteButton';
-import { useGetAccountQuery } from '../app/moviesApiSlice';
+import { useGetAccountQuery } from "../app/moviesApiSlice";
 import { useGetMovieQuery } from "../app/moviesApiSlice";
-import { useNavigate } from 'react-router-dom';
-import HasWatchedButton from './HasWatchedButton';
+import { useNavigate } from "react-router-dom";
+import FavoriteButton from "./FavoriteButton";
+import HasWatchedButton from "./HasWatchedButton";
 
 function MovieDetail(props) {
-    const navigate = useNavigate();
     const { data: account } = useGetAccountQuery();
     let movie_id = props.movie_id;
     const { data, isLoading } = useGetMovieQuery(movie_id);
 
-    if (isLoading) {
-        return <div>Loading ...</div>
-    }
+    const navigate = useNavigate();
+
+    if (isLoading) return <div>Loading ...</div>
 
     return (
         <div className="modal fade" id={movie_id} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
