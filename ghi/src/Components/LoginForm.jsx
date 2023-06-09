@@ -25,7 +25,7 @@ function Login() {
         } else if (result.isError) {
             alert(result.error.data.detail);
         }
-    }, [result]);
+    }, [result, navigate]);
 
     if (isLoading) return <div>Loading...</div>
 
