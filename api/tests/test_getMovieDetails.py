@@ -16,6 +16,7 @@ class FakeMovieQuery:
             "runtime": "string",
             "is_adult": True,
             "release_year": "string",
+            "genres": ["string"],
         }
 
 

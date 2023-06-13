@@ -7,9 +7,27 @@ client = TestClient(app)
 
 class FakeMovieQuery:
     def get_all(
-        self, startYear: str, titleType: str, endYear: str, genre: str, page: str
+        self,
+        startYear: str,
+        titleType: str,
+        endYear: str,
+        genre: str,
+        page: int,
+        req_action: str,
+        api_start_page: str,
+        api_end_page: str,
+        first_movie_index: int,
+        last_movie_index: int,
     ):
-        return []
+        return {
+            "movies": [],
+            "current_page": int,
+            "api_start_page": str | None,
+            "api_end_page": str | None,
+            "first_movie_index": int | None,
+            "last_movie_index": int | None,
+            "next": bool
+        }
 
 
 def test_get_all_movies():
@@ -22,4 +40,11 @@ def test_get_all_movies():
 
     # Assert
     assert response.status_code == 200
-    assert data == {"movies": []}
+    assert data == {"movies": [],
+            "current_page": int,
+            "api_start_page": str | None,
+            "api_end_page": str | None,
+            "first_movie_index": int | None,
+            "last_movie_index": int | None,
+            "next": bool
+        }
