@@ -4,8 +4,10 @@ function HasWatchedButton(props) {
     const { data, isLoading } = useGetFavoritesQuery();
     const [updateFavorite] = useUpdateFavoriteMutation();
 
-    if (isLoading) return <div>Loading...</div>
-
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
+    // eslint-disable-next-line
     let favorite = data.favorites.find(m => {
         if (m.movie_id === props.movie_id && props.email === m.account_email) {
             return m

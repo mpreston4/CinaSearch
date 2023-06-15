@@ -9,6 +9,7 @@ function FavoriteButton({ movie_id, title, picture_url }) {
     if (isFetching) return <div>Loading...</div>
     if (isLoading) return <div>Loading...</div>
 
+    // eslint-disable-next-line
     const favorite = data.favorites.find(m => {
         if (m.movie_id === movie_id && account.email === m.account_email) {
             return m

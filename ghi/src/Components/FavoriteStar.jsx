@@ -5,10 +5,13 @@ function FavoriteStar(props) {
     const [deleteFavorite] = useDeleteFavoriteMutation();
     const [createFavorite] = useCreateFavoriteMutation();
 
-    if (isLoading) return <div>Loading...</div>
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
 
     let movie = props.movie;
     let email = props.email;
+    // eslint-disable-next-line
     let favorite = data.favorites.find(m => {
         if (m.movie_id === movie.movie_id && email === m.account_email) {
             return m
