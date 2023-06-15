@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorNotification />,
     children: [
       {
-        path: '/',
+        path: '/CinaSearch/',
         element: <HomePage />,
       },
       {
