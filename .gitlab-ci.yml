@@ -18,12 +18,12 @@ api-unit-tests-job:
   needs:
     - lint-test-job
   variables:
-    MONGO_USER: 'doesnotmatter'
-    MONGO_PASSWORD: 'doesnotmatter'
-    MONGO_HOST: 'doesnotmatter'
-    MONGO_DB: 'doesnotmatter'
-    SIGNING_KEY: 'doesnotmatter'
-    MOVIES_DATABASE_API_KEY: 'doesnotmatter'
+    MONGO_USER: moviesdbadmin
+    MONGO_PASSWORD: moviesdbadmin
+    MONGO_HOST: srv-captain--movies-db
+    MONGO_DB: movies-db
+    SIGNING_KEY: jP7AhzKiVc2tSovLyKVqvqqabTiV0EMY9QXZoKO0Qjc
+    MOVIES_DATABASE_API_KEY: 9df5a61190msh91aae33630a72aep1b97f8jsn8b130273cb76
   script:
     - cd api
     - pip install -r requirements.txt
