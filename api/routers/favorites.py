@@ -13,7 +13,8 @@ def create_favorite(
     queries: FavoritesQueries = Depends(),
 ):
     try:
-        favorite = queries.create(favorite_in, account_email=account_data["email"])
+        email = account_data["email"]
+        favorite = queries.create(favorite_in, account_email=email)
     except DuplicateError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

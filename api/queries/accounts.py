@@ -45,7 +45,11 @@ class HttpError(BaseModel):
 class AccountQueries(Queries):
     COLLECTION = "accounts"
 
-    def create(self, account_in: AccountIn, hashed_password: str) -> AccountOut:
+    def create(
+        self,
+        account_in: AccountIn,
+        hashed_password: str
+    ) -> AccountOut:
         account = account_in.dict()
         account["hashed_password"] = hashed_password
         account.pop("password")

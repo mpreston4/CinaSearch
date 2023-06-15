@@ -106,11 +106,13 @@ class MovieQuery(Queries):
                     d["picture_url"] = movie["primaryImage"]["url"]
                     result["movies"].append(MovieIn(**d))
                     if len(result["movies"]) == 1:
-                        result["first_movie_index"] = data["results"].index(movie)
+                        idx = data["results"].index(movie)
+                        result["first_movie_index"] = idx
                     count += 1
                     if count == 9:
                         result["api_end_page"] = data["page"]
-                        result["last_movie_index"] = data["results"].index(movie)
+                        idx = data["results"].index(movie)
+                        result["last_movie_index"] = idx
                         if data["next"]:
                             result["next"] = True
                         return result
@@ -168,11 +170,13 @@ class MovieQuery(Queries):
                     d["picture_url"] = movie["primaryImage"]["url"]
                     result["movies"].append(MovieIn(**d))
                     if len(result["movies"]) == 1:
-                        result["first_movie_index"] = data["results"].index(movie)
+                        idx = data["results"].index(movie)
+                        result["first_movie_index"] = idx
                     count += 1
                     if count == 9:
                         result["api_end_page"] = data["page"]
-                        result["last_movie_index"] = data["results"].index(movie)
+                        idx = data["results"].index(movie)
+                        result["last_movie_index"] = idx
                         if data["next"]:
                             result["next"] = True
                         return result
@@ -280,7 +284,8 @@ class MovieQuery(Queries):
         first_movie_index: int,
         last_movie_index: int,
     ):
-        url = f"https://moviesdatabase.p.rapidapi.com/titles/search/title/{title}"
+        url = "https://moviesdatabase.p.rapidapi.com/titles/search/title/"
+        url += title
 
         querystring = {
             "exact": "false",
